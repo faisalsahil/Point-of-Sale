@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  order_number: MyString
+  order_date: 2017-04-15
+  order_type: MyString
+  location_id: 1
+
+two:
+  order_number: MyString
+  order_date: 2017-04-15
+  order_type: MyString
+  location_id: 1

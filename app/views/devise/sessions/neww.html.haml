@@ -1,0 +1,45 @@
+= stylesheet_link_tag 'animate.css', 'custom.css', 'nprogress.css', 'font-awesome.css'
+%body.login
+  %div
+  %a#lost.hiddenanchor
+  %a#signin.hiddenanchor
+  .login_wrapper
+    .animate.form.login_form
+      %section.login_content
+        = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+          %h1 Login Form
+          %div
+            = f.text_field :username, class: 'form-control', :required => true, :placeholder => 'User Name'
+          %div
+            = f.password_field :password, class: 'form-control', :placeholder => 'Password', :required => true
+          %div
+            = f.submit 'Log in', :class => 'btn btn-default submit'
+            - if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
+              %a.reset_pass{:href => '#lost'} Lost your password?
+          .clearfix
+          .separator
+            %p.change_link
+              New to site?
+              %a.to_register{:href => 'javascript:void(0)'} Create Account
+            .clearfix
+            %br/
+            %div
+              %p ©2017 All Rights Reserved. AppsGenii ! is a software development company. Privacy and Terms
+    #register.animate.form.registration_form
+      %section.login_content
+        = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+          = devise_error_messages!
+          %h1 Lost password?
+          %div
+            = f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'Email'
+          %div
+            = f.submit 'Send me reset password instructions', class: 'btn btn-default submit'
+          .clearfix
+          .separator
+            %p.change_link
+              Already a member ?
+              %a.to_register{:href => '#signin'} Log in
+            .clearfix
+            %br/
+            %div
+              %p ©2017 All Rights Reserved. AppsGenii ! is a software development company. Privacy and Terms

@@ -1,0 +1,31 @@
+<br/>
+<div class="well-sm">
+  <span class="pull-right"><strong>Date:</strong>  <%= Date.today.strftime('%d/%m/%Y') %></span>
+  <h3>Purchase Oder Report</h3>
+</div>
+<br/>
+<table class="table table-striped">
+  <thead>
+    <th>ID</th>
+    <th>Product Name</th>
+    <th>Current Stock</th>
+    <th>Purchase Quantity</th>
+    <th>Expiry Date</th>
+    <th>Comments</th>
+  </thead>
+  <tbody>
+  <% @purchase_order.purchase_order_products&.each do |order_product| %>
+      <%
+        product = order_product.product
+      %>
+      <tr>
+        <td><%= product.id %></td>
+        <td><%= product.product_name %></td>
+        <td><%= product.quantity %></td>
+        <td><%= order_product.purchase_quantity %></td>
+        <td><%= order_product.expiry_date.to_date.strftime('%d/%m/%Y') if order_product.expiry_date.present? %></td>
+        <td></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,54 @@
+class ProductsController < ApplicationController
+  before_action :set_product, only: [:show, :edit, :update, :destroy]
+
+  respond_to :html
+
+  def index
+    @products = Product.all
+    respond_with(@products)
+  end
+
+  def show
+    respond_with(@product)
+  end
+
+  def new
+    @product = Product.new
+    # respond_with(@product, @product_natures)
+  end
+
+  def edit
+  end
+
+  def create
+    @product = Product.new(product_params)
+    @product.save
+    respond_with(@product)
+  end
+
+  def update
+    @product.update(product_params)
+    respond_with(@product)
+  end
+
+  def destroy
+    # @product.destroy
+    respond_with(@product)
+  end
+  
+  def download
+    @products = Product.all
+    respond_to do |format|
+      format.csv { send_data @products.to_csv }
+    end
+  end
+  
+  private
+    def set_product
+      @product = Product.find(params[:id])
+    end
+
+    def product_params
+      params.require(:product).permit(:product_name, :product_image, :purchase_price, :sale_price, :product_description, :quantity, :expiry_date)
+    end
+end

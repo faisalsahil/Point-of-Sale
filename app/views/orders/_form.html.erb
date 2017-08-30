@@ -1,0 +1,60 @@
+<div class="row">
+  <div class="col-md-6">
+    <%= form_for(@order) do |f| %>
+        <%= hidden_field_tag "order_id", @order.id %>
+      <% if @order.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+            <ul>
+              <% @order.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+      <% if !@order.new_record? %>
+         <!--<div class="field">-->
+          <%#= f.label :order_number  %><br>
+          <%#=  @order.order_number %>
+        <!--</div>-->
+      <% end%>
+      <div class="field">
+        <%= f.label :order_date %><br>
+        <%= f.text_field :order_date, as: :string, class: "datepicker", value: Date.today.strftime('%d/%m/%Y') %>
+      </div>
+      <div class="field">
+        <%= f.label :order_type %><br>
+        <%= f.select(:order_type,options_for_select([["Sales Order" , "Sales Order" ] , ["Purchase Order" , "Purchase Order" ] ]))  %>
+      </div>
+      <div class="field">
+        <%= f.label :location_id %><br>
+        <%= f.select :location_id, options_for_select(@locations.try(:map) { |u| [u.location_name, u.id] }, @order.location_id),   :required=>true  %>
+      </div>
+  <%= f.fields_for :order_products do |order_product_form| %>
+    <p>
+   
+      <%= order_product_form.text_field :product_id  %>
+     
+    </p>
+  <% end %>
+
+
+
+      <div class="actions">
+        <%= f.submit %>
+
+      </div>
+
+      <div class="col-md-5" style="">
+        <%= f.label "Select Product" %>
+        <%= render :partial => 'added_products' , class: 'col-md-12'%>
+      </div>
+    <% end %>
+  </div>
+  <div id="selector-div" class="col-md-6">
+    <% if @products.present? %>
+      <strong>Add Products</strong>
+      <%= select_tag "products", options_for_select(@products.try(:collect) { |u| [u.product_name, "#{u.id}:#{u.product_name}:#{u.sale_price.to_s}"]}), {:id =>"chosen-select",class: 'asdasd',  multiple: 'multiple'} %>
+    <% end %>
+  </div>
+</div>

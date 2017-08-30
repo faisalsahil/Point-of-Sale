@@ -1,0 +1,21 @@
+<% order_products = @order.order_products %>
+<% order_products.each do |op| %>
+  <% product = op.product %>
+  <tr>
+    <td><%= product.id %></td>
+    <td><%= product.product_name %></td>
+    <td><%= product.sale_price %></td>
+    <td>
+      <a href="#" class="order_product_quantity" data-type="text" data-pk='<%= "#{op.id}" %>' data-url="/order_products/update_quantity" data-title="Enter quantity"><%= op.quantity %></a>
+    </td>
+    <td><%= op.quantity * product.sale_price %></td>
+    <td></td>
+  </tr>
+<% end %>
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.order_product_quantity').editable();
+    });
+</script>

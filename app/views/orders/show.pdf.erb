@@ -1,0 +1,77 @@
+<br/>
+<table>
+  <tbody>
+    <tr>
+      <td>
+        <strong>
+           Order number:
+        </strong>
+      </td>
+      <td>
+        &nbsp;<%= @order.order_number %>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <strong>
+          Order date:
+        </strong>
+      </td>
+      <td>
+        &nbsp;<%= @order.order_date %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <strong>
+          Order type:
+        </strong>
+      </td>
+      <td>
+        &nbsp;<%= @order.order_type %>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <strong>
+          Location:
+        </strong>
+      </td>
+      <td>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<% if @order.order_products.any? %>
+  <br/>
+  <h4><strong>Products</strong></h4>
+  <table class="table">
+    <thead>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Total Price</th>
+    </thead>
+    <tbody>
+      <% @order.order_products.try(:each) do |op| %>
+        <tr>
+          <td>
+            <strong><%= op.product_name %></strong>
+          </td>
+          <td class="text-center">
+            <%= op.unit_price %>
+          </td>
+          <td class="text-center">
+            <%= op.quantity %>
+          </td>
+          <td class="text-center">
+            <%= op.total_price %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

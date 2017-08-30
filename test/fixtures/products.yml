@@ -1,0 +1,37 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  product_name: MyString
+  product_image: MyString
+  avg_purchase_price: 1.5
+  sale_price: 1.5
+  purchase_margin: 1.5
+  sale_discount_percent: 1.5
+  sale_discount_flat: 1.5
+  is_sale_discount: false
+  is_purchase_margin: false
+  product_description: MyText
+  product_nature_id: 
+  product_category_id: 
+  product_company_id: 
+  product_brand_id: 
+  product_unit_id: 
+  product_type_id: 
+
+two:
+  product_name: MyString
+  product_image: MyString
+  avg_purchase_price: 1.5
+  sale_price: 1.5
+  purchase_margin: 1.5
+  sale_discount_percent: 1.5
+  sale_discount_flat: 1.5
+  is_sale_discount: false
+  is_purchase_margin: false
+  product_description: MyText
+  product_nature_id: 
+  product_category_id: 
+  product_company_id: 
+  product_brand_id: 
+  product_unit_id: 
+  product_type_id: 

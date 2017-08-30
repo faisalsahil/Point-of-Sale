@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col-md-6">
+    <h3>Purchase Orders</h3>
+  </div>
+  <div class="col-md-6">
+    <%= link_to 'New Purchase order', new_purchase_order_path , class: 'btn btn-mini btn-success pull-right', style: 'margin-top:2%;' %>
+  </div>
+</div>
+
+
+<table class="table table-striped list_data_table">
+  <thead>
+  <tr>
+    <th>Nname</th>
+    <th>Tot. Products</th>
+    <th>Status</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+
+  <tbody>
+    <% @purchase_orders.each do |purchase_order| %>
+      <tr>
+        <td><%= purchase_order.name %></td>
+        <td><%= purchase_order.purchase_order_products.count %></td>
+        <td><%= purchase_order.is_completed? ? 'Completed' : 'Pending' %></td>
+        <td>
+          <%= link_to '', download_purchase_order_path(purchase_order, {format: 'pdf'}), class: 'fa fa-download' %>
+          <%= link_to '', purchase_order, class: 'fa fa-eye' %>
+          <%= link_to '', edit_purchase_order_path(purchase_order), class: 'fa fa-edit' %>
+          <%= link_to '', purchase_order, method: :delete, data: { confirm: 'Are you sure?' }, class: 'fa fa-trash' if not purchase_order.is_completed %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

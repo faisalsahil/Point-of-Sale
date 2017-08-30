@@ -1,0 +1,27 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  pool: 25
+  username: <%= ENV['POS_DB_USERNAME_' + ENV['POS_MODE']]%>
+  password: <%= ENV['POS_DB_PASSWORD_' + ENV['POS_MODE']]%>
+  host: <%= ENV['POS_DB_HOST_' + ENV['POS_MODE']]%>
+
+
+development:
+  <<: *default
+  database: <%= ENV['POS_DB_NAME_' + ENV['POS_MODE']]%>
+
+
+staging:
+  <<: *default
+  database: <%= ENV['POS_DB_NAME_' + ENV['POS_MODE']]%>
+
+
+test:
+  <<: *default
+  database: POS_test
+
+
+production:
+  <<: *default
+  database: <%= ENV['POS_DB_NAME_' + ENV['POS_MODE']]%>

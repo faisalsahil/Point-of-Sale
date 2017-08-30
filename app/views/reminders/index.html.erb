@@ -1,0 +1,96 @@
+<h2 id="alert-note"></h2>
+<br/>
+
+<div class="row">
+  <div class="col-md-6">
+    <%= form_tag reminders_path, method: 'get' do %>
+        <%= text_field_tag :keyword, params[:keyword], autofocus: true %>
+        <%= submit_tag 'search', name: nil, style: 'width:70px;' %>
+    <% end %>
+  </div>
+
+  <div class="col-md-6">
+    <div style="text-align: right">
+      Select Purchase
+      File: <%= select_tag 'purchase_file', options_from_collection_for_select(@purchase_orders, 'id', 'name') %>
+      <%= link_to 'Add to List', 'javascript:void(0)', id: 'add_items_to_list', class: 'btn btn-mini btn-success' %>
+    </div>
+  </div>
+
+</div>
+
+<br>
+<table class="table table-striped list_data_table">
+  <thead>
+  <th>Sr#</th>
+  <th>NAME</th>
+  <th>Current Stock</th>
+  <th>Expiry</th>
+  <th>Add to List</th>
+  </thead>
+  <tbody>
+  <% @products&& @products.each_with_index do |product, index| %>
+      <tr class="even">
+        <td><%= index + 1 %></td>
+        <td class="left">
+          <%= "#{product.product_name} | #{product.id}" %>
+        </td>
+        <td>
+          <% if product.quantity.present? && product.quantity == 0 %>
+              <div style="background-color: red;">
+                <%= product.try(:quantity) %>
+              </div>
+          <% else %>
+              <div>
+                <%= product.try(:quantity) %>
+              </div>
+          <% end %>
+        </td>
+        <td>
+          <% if product.expiry_date.present? && product.expiry_date <= Date.today %>
+              <div style="background-color: red;">
+                <%= product.try(:expiry_date) %>
+              </div>
+          <% elsif product.expiry_date.present? && product.expiry_date <= Date.today + 1.month %>
+              <div style="background-color: yellow;color: black;">
+                <%= product.try(:expiry_date) %>
+              </div>
+          <% else %>
+              <div>
+                <%= product.try(:expiry_date) %>
+              </div>
+          <% end %>
+        </td>
+        <td>
+          <%# if current_user.role.name == 'manager' %>
+              <%#= link_to "Edit", edit_reminder_path(product) %>
+          <%# end %>
+          <%= check_box_tag 'add_to_list[]', product.id, false, class: 'items_to_list' %>
+          <%= text_field_tag 'quantity[]', 0, style: 'width: 20%;' %>
+
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<div class="pagination" align="center">
+  <%= will_paginate @products %>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#add_items_to_list').click(function () {
+            products_array = [];
+            qnty_array     = [];
+            purchase_order = $('#purchase_file').val();
+            $('.items_to_list:checkbox:checked').each(function () {
+                products_array.push(this.value);
+                qnty_array.push($(this).next('input').val());
+            });
+console.log(products_array);
+console.log(qnty_array);
+            window.location.href = "http://localhost:3000/purchase_order_products/add_products?product_ids=" + products_array + "&quantities=" + qnty_array + "&purchase_order_id=" + purchase_order;
+        });
+    })
+</script>

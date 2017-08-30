@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <%= csrf_meta_tag %>
+    <%= stylesheet_link_tag    'application', media: 'all'%>
+    <%= javascript_include_tag 'application' %>
+  </head>
+
+  <body style="background-color: rgb(233,235,238)">
+    <%= render 'layouts/shared/navigation' %>
+    <%#= render 'layouts/shared/sidebar' %>
+    <!--<br><br><br><br>-->
+    <div class="content-wrapper" style="height: auto;">
+      <div class="container">
+        <div style="margin-top: 8%;">
+          <%= render 'layouts/shared/messages' %>
+          <%= yield %>
+        </div>
+
+      </div>
+    </div>
+  </body>
+</html>

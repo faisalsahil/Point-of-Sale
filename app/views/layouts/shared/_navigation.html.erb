@@ -1,0 +1,61 @@
+<% if user_signed_in? %>
+      <header class="main-header hidden-print col-md-12 "  style="background-color: rgb(0,221,147)">
+        <a class="logo"  href="index.html" style="background-color: rgb(0,221,147)">
+          <img src="/assets/logor.png">
+        </a>
+        <nav class="navbar navbar-inverse" style="background-color: rgb(0,221,147)">
+          <a class="sidebar-toggle" data-toggle="oncanvas" ></a>
+            <ul class="top-nav" style="float: left">
+              <!--Notification Menu-->
+              <li class="">
+                <a class="dropdown-toggle"  data-toggle="dropdown" aria-expanded="false"> <i class="fa fa-user fa-lg"></i>  People</a>
+              </li>
+              <li class="dropdown notification-menu">
+                <a  class="dropdown-toggle"  data-toggle="dropdown" aria-expanded="false">
+                <i class="fa fa-product-hunt fa-lg"></i> Products <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <%= link_to 'New Product', new_product_path %>
+                      <%= link_to 'Products', products_path %>
+                      <%= link_to 'Reminder', reminders_path %>
+                    </li>
+                  </ul>
+              </li>
+              <li class="dropdown notification-menu"><a class="dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-shopping-cart fa-lg"></i> Orders<i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <%= link_to 'New Sale order', sale_order_orders_path %>
+                    <%= link_to 'Sale orders', orders_path %>
+                    <%#= link_to 'Purchase orders', purchase_orders_path %>
+                  </li>
+                </ul>
+              </li>
+              <li class="dropdown notification-menu"><a class="dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-tags fa-lg"></i> Statistics<i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <%= link_to 'Sales Report', sale_report_orders_path %>
+                  </li>
+                </ul>
+              </li>
+
+              <!-- User Menu-->
+              <li class="dropdown notification-menu">
+                <a  class="dropdown-toggle"   data-toggle="dropdown" aria-expanded="false">
+                <b> Welcome, <%=  current_user.email %> <i class="fa fa-chevron-down" aria-hidden="true"></i></b></a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="page-user.html"><i class="fa fa-cog fa-lg"></i> Settings</a>
+                    <a href="page-user.html"><i class="fa fa-user fa-lg"></i> Profile</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+      </header>
+<% else %>
+    <ul class="nav navbar-nav navbar-right">
+      <li>
+        <%= link_to 'Login', new_user_session_path, :class=>'pull-right' %>
+      </li>
+    </ul>
+<% end %>

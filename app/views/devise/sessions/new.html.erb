@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+				<title></title>
+          <link rel="stylesheet" href="public/css/bootstrap.min.css">
+          <link rel="stylesheet" type="text/css" href="customstyle.css">
+  <%= stylesheet_link_tag "bootstrap.min.css","customstyle.css" %>
+  <%= javascript_include_tag 'bootstrap-datepicker', 'date_format'%>
+</head>
+
+
+<body  style="background-color: rgb(255,255,255);">
+			    <div id="Container" class="container">
+			          <h1 align="center" id="mainHeading">Retail Master</h1>
+				           <p align="center" id="subHeading" >
+				                            O N L I N E  &nbsp; S Y S T E M</p>
+
+
+            <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                <div class="field">
+                  <%= f.text_field :username , id:'textbox',placeholder:'username', class: 'col-md-4' ,autofocus: true %>
+                </div>
+
+                <div class="field">
+                  <%= f.password_field :password  ,  id:'textbox',  placeholder:'Password', class: 'col-md-4', autocomplete: "off" %>
+                </div>
+
+
+                <div class="actions">
+                  <%= f.submit "Log in"  ,  id:'submitButton' , class: 'col-md-4'%>
+                </div>
+            <% end %>
+
+
+
+			                    <hr align="center" id="hr" width="33%" />
+			                    <b id="flashAlerts">Flash Alerts !!!!</b>
+			                    <hr align="center" id="hr2" width="33%"/>
+			                    <h5  id="subLink">FORGOT PASSWORD</h5>
+			                    <img id="logo"  src="/assets/logo.png" width="20" height="20"><br>
+			<p id="copyRight">Copyright © AppsGenii 2017, Powered by AppsGenii Technologies (Pvt.) Ltd.
+			         </p>
+			          <br>
+			    </div>
+</body>
+</html>
