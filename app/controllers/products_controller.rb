@@ -1,4 +1,10 @@
 class ProductsController < ApplicationController
+
+   require 'barby'
+   require 'barby/outputter/png_outputter'
+   require 'barby/barcode/code_128'
+   require 'barby/outputter/ascii_outputter'
+
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
@@ -14,6 +20,7 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
+
     # respond_with(@product, @product_natures)
   end
 
@@ -22,8 +29,22 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
-    @product.save
-    respond_with(@product)
+    # barcode = SecureRandom.hex(10).upcase
+    # barcode = 'TG22499'
+
+    barcode = @product.product_name
+    @product.barcode = barcode
+
+    if @product.save
+      barcode1 =  Barby::Code128B.new(barcode)
+      name = @product.product_name
+      File.open( name+".png", 'w'){|f|
+        f.write barcode1.to_png(:height => 20, :margin => 5)
+      }
+      respond_with(@product)
+    else
+
+    end
   end
 
   def update
@@ -32,7 +53,7 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    # @product.destroy
+     @product.destroy
     respond_with(@product)
   end
   

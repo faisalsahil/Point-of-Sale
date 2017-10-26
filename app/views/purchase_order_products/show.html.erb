@@ -1,19 +1,18 @@
-<p id="notice"><%= notice %></p>
+<!--<p id="notice"><%= notice %></p>-->
 
-<p>
-  <strong>Purchase order:</strong>
-  <%= @purchase_order_product.purchase_order_id %>
-</p>
+<!--<p>-->
+  <!--<strong>Purchase order:</strong>-->
+  <!--<%#= @purchase_order_product.purchase_order_id %>-->
+<!--</p>-->
 
-<p>
-  <strong>Current stock:</strong>
-  <%= @purchase_order_product.current_stock %>
-</p>
+<!--<p>-->
+  <!--<strong>Current stock:</strong>-->
+  <!--<%#= @purchase_order_product.current_stock %>-->
+<!--</p>-->
 
-<p>
-  <strong>Purchase quantity:</strong>
-  <%= @purchase_order_product.purchase_quantity %>
-</p>
+<!--<p>-->
+  <!--<strong>Purchase quantity:</strong>-->
+  <!--<%#= @purchase_order_product.purchase_quantity %>-->
+<!--</p>-->
 
-<%= link_to 'Edit', edit_purchase_order_product_path(@purchase_order_product) %> |
-<%= link_to 'Back', purchase_order_products_path %>
+<%= link_to 'Back', purchase_order_path(@purchase_order) %>

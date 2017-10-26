@@ -1,6 +1,22 @@
-class OrderProduct < ActiveRecord::Base
-  belongs_to :order,  inverse_of: :order_products
+  class OrderProduct < ActiveRecord::Base
+  
+  belongs_to :order ,inverse_of: :order_products
   belongs_to :product
+
+   after_save :remove_product
+
+ before_destroy :add_product
+
+ def remove_product
+
+   product.quantity -= self.quantity
+   product.save
+ end
+
+  def add_product
+     product.quantity += self.quantity
+     product.save
+  end
 
   delegate :sale_price, :product_name, to: :product
 
@@ -17,4 +33,3 @@ class OrderProduct < ActiveRecord::Base
   end
 
 end
- 

@@ -1,8 +1,9 @@
 <h1>Listing orders</h1>
-<table class="table table-striped col-md-12" >
+<table class="table table-striped col-md-12 " >
   <thead>
     <tr>
       <th>No.</th>
+      <th>Date</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -13,10 +14,10 @@
         <td><%= order.id %></td>
         <td><%= order.created_at %></td>
         <td>
-          <%= link_to '', order, class: 'glyphicon glyphicon-eye-open' %>
-          <%= link_to '', edit_order_path(order), class: 'glyphicon glyphicon-edit' %>
-          <%= link_to '', order_path(order, format: :pdf), class: 'glyphicon glyphicon-download-alt' %>
-          <%= link_to '', order, method: :delete, data: { confirm: 'Are you sure?' }, class: 'glyphicon glyphicon-trash' %>
+          <%= link_to '', order, class: 'fa fa-eye' %>
+          <%= link_to '', edit_order_path(order), class: 'fa fa-edit' %>
+          <%= link_to '', order_path(order, format: :pdf), class: 'fa fa-download' %>
+          <%= link_to '', order, method: :delete, data: { confirm: 'Are you sure?' }, class: 'fa fa-trash' %>
         </td>
       </tr>
     <% end %>

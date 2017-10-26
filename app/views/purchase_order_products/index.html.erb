@@ -1,6 +1,6 @@
 <h1>Listing purchase_order_products</h1>
 
-<table>
+<table class="table table-striped col-md-12 ">
   <thead>
     <tr>
       <th>Purchase order</th>
@@ -13,19 +13,19 @@
   </thead>
 
   <tbody>
-    <% @purchase_order_products.each do |purchase_order_product| %>
-      <tr>
-        <td><%= purchase_order_product.purchase_order_id %></td>
-        <td><%= purchase_order_product.current_stock %></td>
-        <td><%= purchase_order_product.purchase_quantity %></td>
-        <td><%= link_to 'Show', purchase_order_product %></td>
-        <td><%= link_to 'Edit', edit_purchase_order_product_path(purchase_order_product) %></td>
-        <td><%= link_to 'Destroy', purchase_order_product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+    <%# @purchase_order_products.each do |purchase_order_product| %>
+<!--       <tr>
+        <td><%#= purchase_order_product.purchase_order_id %></td>
+        <td><%#= purchase_order_product.current_stock %></td>
+        <td><%#= purchase_order_product.purchase_quantity %></td>
+        <td><%#= link_to 'Show', purchase_order_product %></td>
+        <td><%#= link_to 'Edit', edit_purchase_order_product_path(purchase_order_product) %></td>
+        <td><%#= link_to 'Destroy', purchase_order_product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+ --> <!--      </tr>
+    <%# end %> -->
   </tbody>
 </table>
 
 <br>
 
-<%= link_to 'New Purchase order product', new_purchase_order_product_path %>
+<%#= link_to 'New Purchase order product', new_purchase_order_product_path %>

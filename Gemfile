@@ -2,6 +2,13 @@ source 'https://rubygems.org'
 
 
 # gem 'bootstrap-sass', '~> 2.3.2.2'
+
+# gem 'barby'
+
+# gem 'barby', require: %w(barby barby/barcode/code_128 barby barby/barcode/code_93 barby/outputter/png_outputter)
+
+gem 'barby-chunky_png'
+
 gem 'bootstrap-sass', '3.2.0.2'
 
 gem 'bootstrap-wysihtml5-rails'
@@ -20,6 +27,8 @@ gem 'haml', '~> 4.0.7'
 
 gem 'iconv', '~> 1.0.3'
 
+gem 'ruby-ole'
+
 gem 'jquery-rails'
 
 gem 'jquery-ui-rails'
@@ -32,13 +41,17 @@ gem 'mysql2', '~> 0.3.18'
 
 gem 'select2-rails', '~> 4.0', '>= 4.0.3'
 
+gem 'png'
+
+gem 'RubyInline'
+
 gem 'puma', '~> 3.0'
 
 gem 'pundit'
 
 gem 'plutus', :git => "https://github.com/mbulat/plutus.git", :branch => "master"
 
-gem 'rails', '4.0.0'
+gem 'rails', '~>4.0'
 
 gem 'sass-rails', '~> 4.0.0'
 
@@ -51,7 +64,6 @@ gem 'sidekiq-failures'
 gem 'sidekiq-status'
 
 gem 'slim'
-
 
 gem 'pg'
 # for pdf generation

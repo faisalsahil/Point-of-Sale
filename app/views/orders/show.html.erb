@@ -1,22 +1,22 @@
-<p id="notice"><%= notice %></p>
+  <p id="notice"><%= notice %></p>
 <dl class="dl-horizontal">
   <dt>Order number:</dt>
-  <dd><%#= @order.order_number %></dd>
+  <dd><%= @order.id %></dd>
 </dl>
 
 <dl class="dl-horizontal">
   <dt>Order date:</dt>
-  <dd><%= @order.order_date %></dd>
+  <dd><%= @order.created_at %></dd>
 </dl>
 
 <dl class="dl-horizontal">
   <dt>Order type:</dt>
-  <dd><%= @order.order_type %></dd>
+  <dd><%#= @order.order_type %></dd>
 </dl>
 
 <dl class="dl-horizontal">
   <dt>Location:</dt>
-  <dd><%=  %></dd>
+  <dd><%#=  %></dd>
 </dl>
 
 <% if @order.order_products.any? %>
@@ -28,6 +28,8 @@
       <th> Sale Price </th>
       <th> Quantity </th>
       <th> Total Price </th>
+      <th> Discount </th>
+      <th> Discounted Price </th>
     </thead>
     <tbody>
       <% @order.order_products.try(:each) do |op| %>
@@ -37,24 +39,36 @@
           </td>
           <td>
             <%= op.unit_price %>
+            <% p=op.unit_price%>
           </td>
           <td>
             <%= op.quantity %>
+            <% q=op.quantity%>
           </td>
           <td>
             <%= op.total_price %>
           </td>
+          <td>
+            <%=  @order.discount%>
+            <% d =@order.discount  %>
+          </td>
+          <td>
+            <%= ( (p*q) - (((d/100)*q)*p)) %>
+          </td>
+
         </tr>
-      <% end %>
+
+    <% end %>
+
     </tbody>
-  </table>
-<% end %>
+        </table>
+
 
 <table class="table table-striped">
   <thead>
     <th></th>
     <th>Name</th>
-    <th>Qnty</th>
+    <th>Quantity</th>
   </thead>
   <tbody>
     <% @order.order_products.each do |order_product| %>
@@ -68,9 +82,14 @@
       </tr>
     <% end %>
   </tbody>
+  <%end %>
 </table>
 
 <%= link_to 'Edit', edit_order_path(@order) %> |
 <%= link_to 'print', 'javascript:void(0);', class: 'take-print' %> |
-<%= link_to 'Generate PDF', order_path(@order, {format: :pdf}) %> |
+<%=   link_to 'Generate PDF', order_path(@order, {format: :pdf}) %> |
 <%= link_to 'Back', orders_path %>
+
+<div id="page_print" type="hidden">
+
+</div>

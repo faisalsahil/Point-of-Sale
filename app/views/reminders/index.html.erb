@@ -67,7 +67,7 @@
           <%# end %>
           <%= check_box_tag 'add_to_list[]', product.id, false, class: 'items_to_list' %>
           <%= text_field_tag 'quantity[]', 0, style: 'width: 20%;' %>
-
+  
         </td>
       </tr>
   <% end %>
@@ -90,7 +90,8 @@
             });
 console.log(products_array);
 console.log(qnty_array);
-            window.location.href = "http://localhost:3000/purchase_order_products/add_products?product_ids=" + products_array + "&quantities=" + qnty_array + "&purchase_order_id=" + purchase_order;
+            window.location.href = "http://localhost:3000/purchase_orders/"+purchase_order+"/purchase_order_products/add?product_ids=" + products_array + "&purchase_order_id=" + purchase_order+ "&quantities=" + qnty_array ;
+           <%# redirect_to purchase_order_path(@purchase_orders); %>
         });
     })
 </script>

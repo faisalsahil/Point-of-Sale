@@ -11,7 +11,7 @@
 <table class="table table-striped list_data_table">
   <thead>
   <tr>
-    <th>Nname</th>
+    <th>Name</th>
     <th>Tot. Products</th>
     <th>Status</th>
     <th>Actions</th>
@@ -25,9 +25,8 @@
         <td><%= purchase_order.purchase_order_products.count %></td>
         <td><%= purchase_order.is_completed? ? 'Completed' : 'Pending' %></td>
         <td>
-          <%= link_to '', download_purchase_order_path(purchase_order, {format: 'pdf'}), class: 'fa fa-download' %>
           <%= link_to '', purchase_order, class: 'fa fa-eye' %>
-          <%= link_to '', edit_purchase_order_path(purchase_order), class: 'fa fa-edit' %>
+          <%= link_to '', edit_purchase_order_path(purchase_order), class: 'fa fa-edit' if not purchase_order.is_completed %>
           <%= link_to '', purchase_order, method: :delete, data: { confirm: 'Are you sure?' }, class: 'fa fa-trash' if not purchase_order.is_completed %>
         </td>
       </tr>

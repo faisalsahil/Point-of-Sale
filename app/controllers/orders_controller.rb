@@ -19,7 +19,7 @@ class OrdersController < ApplicationController
         respond_with(@order)
       end
       format.pdf do
-        pdf_name = "#{@order.order_number}"
+        pdf_name = "#{@order.id}"
         render pdf: pdf_name,
                disposition: 'attachment',
                # template: templ,
@@ -32,7 +32,7 @@ class OrdersController < ApplicationController
                margin: {bottom: 25, top: 25},
                header: {
                    html: {
-                       template: '/orders/header.pdf.erb', # use :template OR :url
+                       template: '/shared/header.pdf.erb', # use :template OR :url
                        layout: 'pdf.html' # optional, use 'pdf_plain.html' for a pdf_plain.html.erb file, defaults to main layout
                    },
                    font_name: 'Times New Roman',
@@ -41,7 +41,7 @@ class OrdersController < ApplicationController
                }, # optionally you can pass plain html already rendered (useful if using pdf_from_string)
                footer: {
                    html: {
-                       template: '/orders/footer.pdf.erb', # use :template OR :url
+                       template: '/shared/footer.pdf.erb', # use :template OR :url
                        layout: 'pdf.html' # optional, use 'pdf_plain.html' for a pdf_plain.html.erb file, defaults to main layout
                    },
                    font_name: 'Times New Roman',
@@ -49,13 +49,14 @@ class OrdersController < ApplicationController
                    line: true
                }
       end
+
     end
 
   end
 
   def purchase_order
     @order = Order.new
-  end
+    end
   
   def sale_order
     @order = Order.new
@@ -63,32 +64,46 @@ class OrdersController < ApplicationController
   end
 
   def edit
+    # binding.pry
     @order_products = @order.order_products
   end
 
   def create
     @order = Order.new(order_params)
-    @order.save
-    
-    flash[:success] = 'order created'
-    redirect_to orders_path
+    @products = Product.all
+    if @order.save
+   #   @op = @order.order_products
+#      @op.where( :op.product_id = @products.ids)
+#      @order_products = @order.order_products
+   #   @id1 = @op.product
+#      Product.joins(:membership).where{'order_products_id).where(['order_products.order_id' => op_id].where.(['orders.id !=?',self.id]).select ('distinct products')
+
+  #    @products = Product.where(id: product_id)
+     # products.id.update(product.quantity=product.quantity-@order_products.quantity)
+      flash[:success] = 'order created'
+      redirect_to orders_path
+
+    else
+      flash[:failure] = 'sorry'
+    end
   end
 
   def update
-    @order.update(order_params)
-    # respond_with(@order)
-    flash[:success] = 'order Updated'
-    redirect_to orders_path
+    if @order.update(order_params)
+     respond_with(@order)
+     flash[:Success] = 'Done'
+    else
+      flash[:failure] = 'Sorry'
+    end
   end
 
   def destroy
-    @order.destroy
-    respond_with(@order)
+    if    @order.destroy
+      redirect_to orders_path
+    end
   end
+
   
-  def sale_report
-    @orders = Order.where('created_at::date = ?', Date.today)
-  end
 
   private
   def set_order
@@ -97,7 +112,8 @@ class OrdersController < ApplicationController
   
   def order_params
     params.require(:order).permit(
-      order_products_attributes: [
+        :discount,
+        order_products_attributes: [
         :id,
         :quantity,
         :product_id,
@@ -109,5 +125,8 @@ class OrdersController < ApplicationController
   def load_locations_and_products
     # @locations = Location.all
     @products = Product.all
+  end
+  respond_to do |format|
+    format.html
   end
 end

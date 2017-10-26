@@ -20,22 +20,36 @@ $(document).ready(function() {
             quantityInput.val( parseInt(quantityInput.val()) + 1 );
             calculateTotalPriceofItem(orderItemTR);
             orderItemTR.prependTo('#added_products tbody');
+            orderItemTR.prependTo('#print_orders tbody');
         }
         else
         {
             var html = "<tr class='order-item-tr' id='pro_"+ pro_id +"'>" +
                 "<td>" + pro_id +
-                "<input name='order[order_products_attributes][][product_id]' type='hidden' value='" + pro_id + "'></td>" +
+                "<input class ='pro-name' name='order[order_products_attributes][][product_id]' type='hidden' value='" + pro_id + "'></td>" +
                 "<td>" + text + "</td>" +
                 "<td class='order-item-stock'>" + stock + "</td>" +
                 "<input name='order[order_products_attributes][][unit_cost]' type='hidden' value='" + s_price + "'></td>" +
                 "<td class='order-item-sale-price'>" + s_price + "</td>" +
-                "<td><input class='order-item-quantity-input' name='order[order_products_attributes][][quantity]' id='quantity' type='text' value='1' style='width:30%' ></td>" +
+                "<td><input class='order-item-quantity-input' name='order[order_products_attributes][][quantity]' id='quantity' type='integer' value = '1' style='width:50%'  > </td>" +
                 "<td class='order-item-total'>" + tot + "</td>" +
                 "<td><a href='#' class='remove_item' ><span class='fa fa-close'></span></a></td>" +
                 "</tr>";
-            $('#added_products tbody').prepend(html);
         }
+        $('#added_products tbody').prepend(html);
+
+        var s_quantity = $('#quantity').val();
+        var id1 = $('#order-item-tr').val();
+        var nam1 =$('#pro-name').val();
+
+        var html1 = "<tr class='order-item-tr' id='pro_"+ id1 +"'>" +
+            "<td>" + text + "</td>" +
+            "<td class='order-item-sale-price'>" + s_price + "</td>" +
+            "<td class='order-item-quantity-input' > " + s_quantity + " </td>" +
+            "<td class='order-item-total'>" + tot + "</td>" +
+            "</tr>";
+        $('#print_orders tbody').prepend(html1);
+
 
         $("#chosen-select").val('').trigger('change');
         calculateGrossAmountTotal();
@@ -77,20 +91,39 @@ function calculateTotalPriceofItem(orderItemTR) {
     }
 }
 
+
+//function calculateQuantity(orderItemTR){
+    //var orderProductId = parseInt(orderItemTR.find('order[order_products_attributes][][product_id]').val());
+//    if ( $('#pro_' + pro_id).length > 0 )
+  //  {
+    //    var orderItemTR = $('#pro_' + pro_id);
+      //  var quantityInput = orderItemTR.find('input.order-item-quantity-input');
+
+$(function(){
+    $('#save').on('submit', function(e){
+
+    });
+});
+
+  //      var pQuantity = parseInt(orderItemTR.find('input.order-item-quantity-input').val()) || 0;
+
+
+//}
+
 function calculateGrossAmountTotal() {
     var gross_total = 0;
     $("#added_products > tbody > tr").each(function( i ) {
         gross_total = gross_total + parseFloat($(this).find('td.order-item-total').text());
-        $('.gross_amount').text(gross_total);
+        $('#gross_amount').text(gross_total);
     });
     if($("#added_products > tbody > tr").length == 0){
-        $('.gross_amount').text(0);
+        $('#gross_amount').text(0);
     }
     calculateNetAmount();
 }
 
 function calculateNetAmount() {
-    var gross_amount   = $('.gross_amount').text();
+    var gross_amount   = $('#gross_amount').text();
     var disc_percentage= parseFloat($('#discount_percentage').val()) || 0;
     var disc_total     = (gross_amount * disc_percentage) / 100;
     var net_amount     = gross_amount - disc_total;

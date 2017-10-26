@@ -1,0 +1,55 @@
+<%= javascript_include_tag "http://code.jquery.com/jquery-1.10.0.min.js" %>
+<%= javascript_include_tag "http://code.jquery.com/ui/1.10.3/jquery-ui.min.js" %>
+
+<br/>
+  <table>
+        <thead>
+        <th>No#</th>
+        <th>Item Name</th>
+        <th>Quantity</th>
+        <th>Stock</th>
+        <th>Unit Price</th>
+        <th>Price</th>
+        <th>Order Discount</th>
+        </thead>
+        <tbody>
+        <% total_price = 0%>
+        <% discounted_price = 0 %>
+        <% @order_products.each_with_index do |order_product, index|  %>
+            <% @product = order_product.product
+               @order   = order_product.order
+            %>
+            <tr>
+              <td><%= index + 1 %></td>
+              <td><%= @product.product_name %></td>
+              <td><%= order_product.quantity %></td>
+              <td><%= @product.quantity %></td>
+              <td><%= order_product.unit_cost %></td>
+              <td><% price= order_product.quantity * order_product.unit_cost
+                     total_price=total_price+price %><%= price %></td>
+              <td><%= @order.discount %></td>
+              <% discounted_price = discounted_price + ((order_product.quantity*order_product.unit_cost) -(price*@order.discount)/100) %>
+            </tr>
+        <% end %>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td> Total Price :</td>
+          <td><%= total_price %></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td> Discounted Price :</td>
+          <td><%= discounted_price %></td>
+        </tr>
+
+        </tbody>
+  </table>
+

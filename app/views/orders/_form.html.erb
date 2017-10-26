@@ -19,24 +19,25 @@
         <!--</div>-->
       <% end%>
       <div class="field">
-        <%= f.label :order_date %><br>
+        <%= f.label :order_date %></br>
         <%= f.text_field :order_date, as: :string, class: "datepicker", value: Date.today.strftime('%d/%m/%Y') %>
       </div>
-      <div class="field">
-        <%= f.label :order_type %><br>
-        <%= f.select(:order_type,options_for_select([["Sales Order" , "Sales Order" ] , ["Purchase Order" , "Purchase Order" ] ]))  %>
       </div>
       <div class="field">
-        <%= f.label :location_id %><br>
-        <%= f.select :location_id, options_for_select(@locations.try(:map) { |u| [u.location_name, u.id] }, @order.location_id),   :required=>true  %>
+        <%#= f.label :order_type %><br>
+        <%#= f.select(:order_type,options_for_select([["Sales Order" , "Sales Order" ] , ["Purchase Order" , "Purchase Order" ] ]))  %>
       </div>
-  <%= f.fields_for :order_products do |order_product_form| %>
+      <div class="field">
+        <%#= f.label :location_id %><br>
+        <%#= f.select :location_id, options_for_select(@locations.try(:map) { |u| [u.location_name, u.id] }, @order.location_id),   :required=>true  %>
+      </div>
+  <%#= f.fields_for :order_products do |order_product_form| %>
     <p>
    
-      <%= order_product_form.text_field :product_id  %>
+      <%#= order_product_form.text_field :product_id  %>
      
     </p>
-  <% end %>
+  <%# end %>
 
 
 
@@ -54,7 +55,7 @@
   <div id="selector-div" class="col-md-6">
     <% if @products.present? %>
       <strong>Add Products</strong>
-      <%= select_tag "products", options_for_select(@products.try(:collect) { |u| [u.product_name, "#{u.id}:#{u.product_name}:#{u.sale_price.to_s}"]}), {:id =>"chosen-select",class: 'asdasd',  multiple: 'multiple'} %>
+      <%= select_tag "products", options_for_select(@products.try(:collect) { |u| [u.product_name, "#{u.id}:#{u.product_name}:#{u.sale_price.to_s}:#{u.quantity}  "]}), {:id =>"chosen-select",class: 'asdasd',  multiple: 'multiple'} %>
     <% end %>
   </div>
 </div>

@@ -1,53 +1,54 @@
-<p>
+ <p>
+
   <strong>Name:</strong>
   <%= @purchase_order.name %>
   <% if not @purchase_order.is_completed %>
-    <%= link_to 'Complete Order', complete_order_purchase_order_path(@purchase_order), class: 'btn btn-success pull-right' %>
-    <%= link_to 'Update Order', '#', class: 'btn btn-primary pull-right', id: 'update_purchase_order' %>
-  <% end %>
+    <%= link_to 'Complete Order', complete_order_purchase_order_path(@purchase_order), class: 'btn btn-success pull-right', id: "purchase_file" %>
+    <%= link_to 'Add Order', new_purchase_order_purchase_order_product_path(@purchase_order), class: 'btn btn-primary pull-right', id: 'add_purchase_order_products' %>
+    <%#= link_to 'Edit Order',  edit_purchase_order_product_path(@purchase_order), class: 'btn btn-primary pull-right', id: 'update_purchase_order_products' %>
+
+<% end %>
+  <%=   link_to 'Generate PDF', purchase_order_path(@purchase_order, {format: :pdf}) %> |
+
 </p>
 
 <table class="table table-striped">
   <thead>
   <th>Product Name</th>
-  <th>Expiry</th>
   <th>Current Stock</th>
   <th>Purchase Quantity</th>
-  <th>Expiry</th>
+  <!--<th>Expiry</th>-->
   <th>Actions</th>
   </thead>
   <tbody>
-  <% @purchase_order_products.each do |order_product| %>
-      <% product = order_product.product %>
+  <div  class="purchase_order_products" >
+  <% @purchase_order_products.each do |purchase_order_product| %>
       <tr>
-        <td><%= product.product_name %></td>
-        <td><%= product.expiry_date ? product.expiry_date.to_date.strftime('%d/%m/%Y') : nil %></td>
-        <td><%= product.quantity %></td>
+        <td><%= purchase_order_product.name %></td>
+        <td><%= purchase_order_product.current_stock %></td>
         <td>
-          <% if not @purchase_order.is_completed %>
-            <%= text_field_tag 'quantites[]', order_product.purchase_quantity, class: 'update_order_quantites', style: 'width:20%;', id: order_product.id %>
-          <% else %>
-              <%= text_field_tag 'quantites[]', order_product.purchase_quantity, class: 'update_order_quantites', style: 'width:20%;', id: order_product.id, disabled: true %>
-          <% end %>
+          <%= purchase_order_product.purchase_quantity %>
+          <!--<%# if not @purchase_order.is_completed %>-->
+            <!--<%#= text_field_tag 'quantites[]', purchase_order_product.purchase_quantity, class: 'update_order_quantites', style: 'width:20%;', id: purchase_order_product.id %>-->
+          <!--<%# else %>-->
+              <!--<%#= text_field_tag 'quantites[]', purchase_order_product.purchase_quantity, class: 'update_order_quantites', style: 'width:20%;', id: purchase_order_product.id, disabled: true %>-->
+          <!--<%# end %>-->
         </td>
         <td>
           <% if not @purchase_order.is_completed %>
-            <% if order_product.expiry_date.present? %>
-              <%= text_field_tag 'expiry_date[]', order_product.expiry_date.to_date.strftime('%d/%m/%Y') , class: "datepicker" %>
-            <% else %>
-                <%= text_field_tag 'expiry_date[]', Date.today.strftime('%d/%m/%Y') , class: "datepicker" %>
-            <% end %>
-          <% else %>
-            <%= order_product.expiry_date.to_date.strftime('%d/%m/%Y') if order_product.expiry_date.present? %>
-          <% end %>
-        </td>
-        <td>
-          <% if not @purchase_order.is_completed %>
-            <%= link_to '', remove_order_product_purchase_order_product_path(order_product), method: :delete, data: { confirm: 'Are you sure?' }, class: 'fa fa-trash' %>
-          <% end %>
+              <%#= text_field_tag 'ids1[]', order_product.id, class:'delete_purchase_order_product',id: order_product.id %>
+              <%#=  id = order_product.id %>
+              <%#= @purchase_order_product = PurchaseOrderProduct.find_by_id ( id )%>
+              <%# @order_product = @purchase_order_product.name %>
+              <%=  link_to 'Delete', purchase_order_purchase_order_product_path(@purchase_order, purchase_order_product), method: :delete, class: 'btn btn-primary pull-right' %>
+              <%#= link_to 'Edit Order',  edit_purchase_order_purchase_order_product_path(@purchase_order,purchase_order_product), class: 'btn btn-success pull-right', id: 'update_purchase_order_products' %>
+              <%#= link_to '', update_products_purchase_order_product_path , class: 'fa fa-edit' %>
+              <%#= link_to 'Edit', 'javascript:void(0)', id: 'update_purchase_order_product', class: 'btn btn-mini btn-success' %>
+        <% end %>
         </td>
       </tr>
   <% end %>
+  </div>
   </tbody>
 </table>
 
@@ -56,8 +57,19 @@
 
 
 <script type="text/javascript">
-    $(document).ready(function () {
-        $('#update_purchase_order').click(function () {
+       $(document).ready(function () {
+//        $('#delete_purchase_order_product').click(function () {
+//            ids_array1= [];
+//            purchase_order = order_product.id;
+//            $('.purchase_order_products').each(function () {
+//                ids_array1.push(this.value);
+//            });
+//            console.log(ids_array1);
+//            window.location.href = "http://localhost:3000/purchase_order/purchase_order/purchase_order_products/del?ids=" + ids_array1;
+//        });
+
+//
+        $('#update_purchase_order_product').click(function () {
             ids_array    = [];
             qnty_array   = [];
             expiry_array = []
@@ -70,7 +82,7 @@
             console.log(ids_array);
             console.log(qnty_array);
             console.log(expiry_array);
-            window.location.href = "http://localhost:3000/purchase_order_products/update_products?ids=" + ids_array + "&quantities=" + qnty_array + "&expiries=" + expiry_array;
+            window.location.href = "http://localhost:3000/purchase_order/" + purchase_order + "/purchase_order_products/" + purchase_order_product+ "/update_products?ids=" + ids_array + "&quantities=" + qnty_array + "&expiries=" + expiry_array;
         });
     })
 </script>

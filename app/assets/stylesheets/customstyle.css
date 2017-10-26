@@ -101,3 +101,9 @@
    text-align: center;
    color: grey;
 }
+
+
+#hidden_div
+{
+    display: none;
+}

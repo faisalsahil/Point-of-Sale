@@ -1,25 +1,47 @@
 PosRetail::Application.routes.draw do
   
-  
-  resources :purchase_order_products, only: [] do
-    collection do
-      get :add_products
-      get :update_products
-    end
-    member do
-      delete :remove_order_product
-    end
+  get "reports/index"
+    get "reports/sale_report"
+    post "reports/sale_report" , :as => 'download'
+
+ # post "reports/sale_report/generate_report", :as =>'download'
+
+
+  resources :sale_report do
+  collection do
+    get :download
+    post 'sale_report'
   end
+#  root to: "reports#sale_report"
+
+  end
+
   resources :purchase_orders do
+    resources :purchase_order_products do
+       collection do
+         get :add
+         get :del
+         get :new
+          get :edit
+         # patch :update
+       end
+       member do
+         # get :edit
+        # get :update_products
+         get :remove_order_product
+       end
+    end
+
     member do
       get :complete_order
       get :download
     end
   end
+
+
   resources :reminders
   mount Plutus::Engine => "/pos", :as => "plutus"
-  
-  
+
   devise_for :users
   
   resources :products do

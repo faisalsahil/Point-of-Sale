@@ -7,12 +7,12 @@ class RemindersController < ApplicationController
       @products = Product.where("lower(product_name) like ?", "%#{params[:keyword]}%".downcase)
     end
     @products = @products.paginate(:page => params[:page], :per_page => 5)
-    @products = @products.sort_by!{ |m| m.product_name.downcase }
-    @purchase_orders = PurchaseOrder.all
+    # @products = @products.sort_by!{ |m| m.product_name.downcase }
+    @purchase_orders = PurchaseOrder.where(is_completed: 0)
   end
   
   def edit
-    @item = Item.find_by_id(params[:id])
+    @item = Item.find_by_id(params[:id])  
   end
   
   def update

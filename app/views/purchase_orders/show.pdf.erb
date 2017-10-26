@@ -1,0 +1,47 @@
+<br/>
+<table>
+  <tbody>
+  <tr>
+    <td>
+      <strong>
+        Purchase Order Name:
+      </strong>
+    </td>
+    <td>
+      &nbsp;<%= @purchase_order.name %>
+    </td>
+  </tr>
+  <br></br>
+
+
+
+  </tbody>
+</table>
+
+<% if @purchase_order.purchase_order_products.any? %>
+    <br/>
+    <h4><strong>Products</strong></h4>
+    <table class="table">
+      <thead>
+      <th>Name</th>
+      <th>Current Stock</th>
+      <th>Quantity</th>
+      <th>Remarks</th>
+      </thead>
+      <tbody>
+      <% @purchase_order.purchase_order_products.try(:each) do |op| %>
+          <tr>
+            <td>
+              <strong><%= op.name %></strong>
+            </td>
+            <td class="text-center">
+              <%= op.current_stock %>
+            </td>
+            <td class="text-center">
+              <%= op.purchase_quantity %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+<% end %>
