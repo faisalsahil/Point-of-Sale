@@ -130,7 +130,7 @@ $(function () {
 
 $(document).ready(function(){
     $('.list_data_table').DataTable({
-        "pageLength": 50,
+        "pageLength": 5,
         "aaSorting": [[ 0, "asc" ]]
     });
 });

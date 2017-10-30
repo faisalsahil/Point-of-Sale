@@ -22,12 +22,13 @@ PosRetail::Application.routes.draw do
          get :add
          get :del
          get :new
-          get :edit
-         # patch :update
+         get :edit
+
        end
        member do
          # get :edit
         # get :update_products
+         put :update
          get :remove_order_product
        end
     end

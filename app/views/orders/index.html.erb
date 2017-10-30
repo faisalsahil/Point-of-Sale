@@ -1,7 +1,8 @@
+<%= link_to 'New Order', sale_order_orders_path, class: 'pull-right btn btn-success' %>
 <h1>Listing orders</h1>
-<table class="table table-striped col-md-12 " >
+<table class="table table-striped col-md-12 list_data_table " >
   <thead>
-    <tr>
+  <tr>
       <th>No.</th>
       <th>Date</th>
       <th>Actions</th>
@@ -9,7 +10,7 @@
   </thead>
 
   <tbody>
-    <% @orders.each do |order| %>
+  <% @orders.each do |order| %>
       <tr>
         <td><%= order.id %></td>
         <td><%= order.created_at %></td>
@@ -20,10 +21,9 @@
           <%= link_to '', order, method: :delete, data: { confirm: 'Are you sure?' }, class: 'fa fa-trash' %>
         </td>
       </tr>
-    <% end %>
+  <% end %>
   </tbody>
 </table>
 
 <br>
 
-<%= link_to 'New Order', sale_order_orders_path %>

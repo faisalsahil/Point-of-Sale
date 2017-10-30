@@ -70,7 +70,6 @@ class ProductsController < ApplicationController
       }
       #  File.print( name+".png",'w')
       respond_with(@product)
-    else
 
     end
   end
