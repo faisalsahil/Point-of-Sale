@@ -21,6 +21,12 @@ gem 'dotenv-rails'
 
 gem 'erb2haml'
 
+gem 'escpos'
+
+gem 'escpos-image'
+
+gem 'mini_magick'
+
 gem 'bootstrap-glyphicons'
 
 gem 'haml', '~> 4.0.7'

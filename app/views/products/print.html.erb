@@ -1,0 +1,40 @@
+<div id = "printableArea" >
+<%= image_tag "barcodes/#{@product.barcode}.png" ,width: 85,height: 85  %>
+</div>
+
+<input type="button" onclick="printDiv('#printableArea')" value="Print barcode", class = "btn btn-primary", action = "" />
+
+<%= link_to 'Back',products_path , class: 'btn btn-mini btn-success pull-right'%>
+
+<script>
+
+function printDiv(elem)
+{
+    Popup($(elem).html());
+}
+
+function Popup(data)
+{
+    var mywindow = window.open((this.href,'targetWindow', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=10px  ,height=20px'));
+
+    /*optional stylesheet*/ //mywindow.document.write('<link rel="stylesheet" href="main.css" type="text/css" />');
+    var i = 0;
+    for (i=0;i<6;i++) {
+        mywindow.document.write("\xa0\xa0\xa0\xa0");
+        mywindow.document.write(data);
+        mywindow.document.write("\xa0\xa0\xa0\xa0\xa0\xa0");
+        mywindow.document.write(data);
+        mywindow.document.write("\xa0\xa0\xa0\xa0\xa0\xa0");
+        mywindow.document.write(data);
+
+//        mywindow.document.write("\n");
+        mywindow.document.write("<br>");
+
+        mywindow.document.write("\xa0");
+    }
+    mywindow.print();
+    mywindow.close();
+
+    return true;
+}
+</script>

@@ -77,7 +77,7 @@ class PurchaseOrderProductsController < ApplicationController
         if @purchase_order_product.save
           # redirect_to purchase_item_list_items_path(@purchase_item)
           flash[:success] = 'successfully added to purchase order.'
-          end
+        end
       else
         @purchase_order_product = @purchase_order.purchase_order_products.find_by_id(purchase_order_product)
         @purchase_order_product.purchase_quantity = @purchase_order_product.purchase_quantity + quantity[i].to_i;

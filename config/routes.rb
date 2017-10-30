@@ -48,6 +48,9 @@ PosRetail::Application.routes.draw do
     collection do
       get :download
     end
+    member do
+      get :print
+    end
   end
   resources :orders do
     collection do

@@ -123,6 +123,10 @@ GEM
       html2haml
     erubi (1.7.0)
     erubis (2.7.0)
+    escpos (0.0.6)
+    escpos-image (0.0.3)
+      chunky_png
+      escpos
     execjs (2.7.0)
     ffi (1.9.18)
     globalid (0.4.0)
@@ -173,6 +177,7 @@ GEM
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
+    mini_magick (4.8.0)
     mini_portile2 (2.3.0)
     minitest (5.10.3)
     multi_json (1.12.2)
@@ -322,12 +327,15 @@ DEPENDENCIES
   devise
   dotenv-rails
   erb2haml
+  escpos
+  escpos-image
   haml (~> 4.0.7)
   iconv (~> 1.0.3)
   jbuilder (~> 1.2)
   jquery-rails
   jquery-ui-rails
   listen (~> 3.0.5)
+  mini_magick
   mysql2 (~> 0.3.18)
   pg
   plutus!

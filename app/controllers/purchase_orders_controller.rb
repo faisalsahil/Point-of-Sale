@@ -103,6 +103,8 @@ class PurchaseOrdersController < ApplicationController
         product = Product.new
         product.product_name=order_product.name
         product.quantity = order_product.purchase_quantity
+        product.expiry_date = order_product.expiry_date
+        product.save
       end
 
     end
