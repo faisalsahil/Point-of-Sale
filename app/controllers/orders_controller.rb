@@ -60,7 +60,7 @@ class OrdersController < ApplicationController
   
   def sale_order
     @order = Order.new
-    @products = Product.all
+    @products = Product.where("quantity > ?", 0)
   end
 
   def edit
