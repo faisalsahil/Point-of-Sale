@@ -1,5 +1,28 @@
-<h1>Editing purchase_order_product</h1>
+<h1>Purchase Order Product</h1>
 
-<%= render 'form1' %>
+<%#= render 'form1' %>
 
-<%= link_to 'Back', purchase_order_path(@purchase_order) %>
+<%#= link_to 'Back', purchase_order_path(@purchase_order) %>
+<%=form_for @purchase_order_product, url: purchase_order_purchase_order_product_path(@purchase_order, @purchase_order_product), method: :put do |f| %>
+    <div class="field">
+      <%= f.label :name %><br>
+      <%= f.text_field :name %>
+    </div>
+    <div class ="hidden">
+      <%= f.label :purchase_order_id %> <br/>
+      <%= f.hidden_field :purchase_order_id, :value => @purchase_order.id%>
+    </div>
+    <div class="hidden">
+      <%= f.label :current_stock %> <br/>
+      <%= f.hidden_field :current_stock,:value => 0 %>
+    </div>
+    <div class="field">
+      <%= f.label :purchase_quantity %><br>
+      <%= f.number_field :purchase_quantity %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit 'Update', class:'btn btn-success' %>
+    </div>
+
+<% end %>

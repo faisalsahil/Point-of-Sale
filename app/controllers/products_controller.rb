@@ -39,10 +39,9 @@ class ProductsController < ApplicationController
       barcode1 =  Barby::Code128B.new(barcode)
       name = @product.product_name
       File.open( name+".png", 'w'){|f|
-        f.write barcode1.to_png(:height => 20, :margin => 5)
+        f.write barcode1.to_png(:width => 40, :height => 26 , :margin => 4)
       }
       respond_with(@product)
-    else
 
     end
   end
