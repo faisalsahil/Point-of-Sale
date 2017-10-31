@@ -6,6 +6,7 @@
         <thead>
         <th>No#</th>
         <th>Item Name</th>
+        <th>Order Number</th>
         <th>Quantity</th>
         <th>Stock</th>
         <th>Unit Price</th>
@@ -22,6 +23,7 @@
             <tr>
               <td><%= index + 1 %></td>
               <td><%= @product.product_name %></td>
+              <td><%= @order.id %></td>
               <td><%= order_product.quantity %></td>
               <td><%= @product.quantity %></td>
               <td><%= order_product.unit_cost %></td>
@@ -37,10 +39,12 @@
           <td></td>
           <td></td>
           <td></td>
+          <td></td>
           <td> Total Price :</td>
           <td><%= total_price %></td>
         </tr>
         <tr>
+          <td></td>
           <td></td>
           <td></td>
           <td></td>
