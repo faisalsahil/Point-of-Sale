@@ -1,3 +1,15 @@
+<style type="text/css" media="print">
+  #h3_sale { display: none; }
+  #print_btn { display: none; }
+  #action_btn { display: none; }
+  #selector-div { display: none; }
+  #added_products td:nth-child(1),th:nth-child(1) { display: none; }
+  #added_products td:nth-child(3),th:nth-child(3) { display: none; }
+  #added_products td:nth-child(8),th:nth-child(7) { display: none; }
+  .order-item-quantity-input{ border: none; text-align: right;}
+  #discount_percentage{ border: none; text-align: right;}
+  #table-values{position: relative;float: none !important;}
+</style>
 <div class="row">
   <%= form_for(@order) do |f| %>
 
@@ -65,55 +77,11 @@
           </tbody>
         </table>
 
-        <div id="hidden_div" hidden>
-          <div id="print_div">
 
-            <div>
-
-              <div>
-                    <%= render :partial => 'print_order'  , class: 'col-md-12'%>
-              </div>
-
-            </div>
-
-
-            <div id="print-values" style=" text-align: center; margin-top: 50px">
-
-              <table class="table table-striped "  style="font-size:34px" >
-
-                <thead>
-                <td style="background-color: rgb(0,221,147);color: solid black;text-align: center;margin-left: 50px"><h3>Total </h3></td>
-
-                <td style="background-color: rgb(0,221,147);color: solid black ;text-align: center;"><h3 id="total_amount1">0.0</h3></td>
-                </thead>
-
-                <tbody>
-                <tr>
-                  <td style="text-align: center;margin-left: 500px">Gross Amount</td>
-                  <td id="gross_amount1" style=" text-align: center;"> 0 </td>
-                </tr>
-
-                <tr>
-                  <td style="text-align: center;margin-left: 50px" >Total Discount</td>
-                  <td id="discount_amount1" style=" text-align: right"> 0 </td>
-                </tr>
-                <tr>
-                  <td style="margin-left: 50px" >Net Amount</td>
-                  <td id="net_amount1" style=" text-align: right"> 0 </td>
-                </tr>
-                </tbody>
-
-              </table>
-
-            </div>
-
-          </div>
-        </div>
-
-        <input type="button"  value = "print" onclick="PrintDiv();" class="print btn btn-primary" style=" width: 100% ; border-radius: 0px;background-color: rgb(0,221,147)">
+        <input id="print_btn" type="button"  value = "print" onclick="PrintDiv();" class="print btn btn-primary" style=" width: 100% ; border-radius: 0px;background-color: rgb(0,221,147)">
         </input>
 
-        <div class="row">
+        <div class="row" id="action_btn">
           <div class="col-md-4" style="width: 50%">
             <%= f.submit 'Save',{:style =>'margin-top:5px ; width: 100%', :class => 'btn btn-primary save'  } %>
           </div>
@@ -125,3 +93,4 @@
 
   </div>
 </div>
+

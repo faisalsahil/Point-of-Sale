@@ -72,14 +72,6 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     @products = Product.all
     if @order.save
-   #   @op = @order.order_products
-#      @op.where( :op.product_id = @products.ids)
-#      @order_products = @order.order_products
-   #   @id1 = @op.product
-#      Product.joins(:membership).where{'order_products_id).where(['order_products.order_id' => op_id].where.(['orders.id !=?',self.id]).select ('distinct products')
-
-  #    @products = Product.where(id: product_id)
-     # products.id.update(product.quantity=product.quantity-@order_products.quantity)
       flash[:success] = 'order created'
       redirect_to orders_path
 

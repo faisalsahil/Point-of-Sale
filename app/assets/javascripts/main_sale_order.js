@@ -1,4 +1,7 @@
 $(document).ready(function() {
+
+
+
     $("#chosen-select").select2({
         theme: "bootstrap"
     });
@@ -13,6 +16,7 @@ $(document).ready(function() {
         var stock  = arr[3];
         var tot    = s_price * 1;
         // Append to order sheet
+
         if ( $('#pro_' + pro_id).length > 0 )
         {
             var orderItemTR = $('#pro_' + pro_id);
@@ -20,11 +24,12 @@ $(document).ready(function() {
             quantityInput.val( parseInt(quantityInput.val()) + 1 );
             calculateTotalPriceofItem(orderItemTR);
             orderItemTR.prependTo('#added_products tbody');
+
         }
         else
         {
             var html = "<tr class='order-item-tr' id='pro_"+ pro_id +"'>" +
-                "<td>" + pro_id +
+                "<td id = 'pro_id'>" + pro_id +
                 "<input name='order[order_products_attributes][][product_id]' type='hidden' value='" + pro_id + "'></td>" +
                 "<td>" + text + "</td>" +
                 "<td class='order-item-stock'>" + stock + "</td>" +
@@ -36,24 +41,18 @@ $(document).ready(function() {
                 "</tr>";
 
             $('#added_products tbody').prepend(html);
+
         }
-
-        var s_quantity = $('#quantity').val();
-        var id1 = $('#order-item-tr').val();
-
-        var html1 = "<tr class='order-item-tr' id='pro_"+ id1 +"'>" +
-            "<td>" + text + "</td>" +
-            "<td class='order-item-sale-price'>" + s_price + "</td>" +
-            "<td class='order-item-quantity-input' > " + s_quantity + " </td>" +
-            "<td class='order-item-total'>" + tot + "</td>" +
-            "</tr>";
-        $('#print_orders tbody').prepend(html1);
 
         $("#chosen-select").val('').trigger('change');
         calculateGrossAmountTotal();
+
+
     });
 
+
     $('#added_products').on("click", ".remove_item", function(){
+
         $(this).parents('tr').remove();
         calculateGrossAmountTotal();
     });

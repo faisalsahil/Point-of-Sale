@@ -22,22 +22,5 @@ $(document).ready(function(){
 
 
 function PrintDiv() {
-        var divToPrint = document.getElementById('print_div');
-        var popupWin = window.open( '_blank', 'width=300,height=300');
-
-        var totalAmount = $('#total_amount');
-        $('#total_amount1').html(totalAmount);
-
-        var grossAmount = $('#gross_amount');
-        $('#gross_amount1').html(grossAmount);
-
-        var discountAmount = $('#discount_amount');
-        $('#discount_amount1').html(discountAmount);
-
-        var netAmount = $('#net_amount');
-        $('#net_amount1').html(netAmount);
-
-        popupWin.document.open();
-        popupWin.document.write('<html><body onload="window.print()">' + divToPrint.innerHTML + '</html>');
-        popupWin.document.close();
+        window.print();
 }
