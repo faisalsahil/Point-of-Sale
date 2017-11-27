@@ -87,7 +87,7 @@
             });
             console.log(products_array);
             console.log(qnty_array);
-            window.location.href = document.location.href+"/purchase_orders/"+purchase_order+"/purchase_order_products/add?product_ids=" + products_array + "&purchase_order_id=" + purchase_order+ "&quantities=" + qnty_array ;
+            window.location.href = document.location.hostname+"/purchase_orders/"+purchase_order+"/purchase_order_products/add?product_ids=" + products_array + "&purchase_order_id=" + purchase_order+ "&quantities=" + qnty_array ;
            <%# redirect_to purchase_order_path(@purchase_orders); %>
         });
 
