@@ -43,7 +43,7 @@ gem 'jbuilder', '~> 1.2'
 
 gem 'will_paginate', '~> 3.1.0'
 
-gem 'mysql2', '~> 0.3.18'
+# gem 'mysql2', '~> 0.3.18'
 
 gem 'select2-rails', '~> 4.0', '>= 4.0.3'
 
