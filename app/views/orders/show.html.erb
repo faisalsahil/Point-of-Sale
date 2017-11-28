@@ -62,34 +62,9 @@
 
     </tbody>
         </table>
-
-
-<table class="table table-striped">
-  <thead>
-    <th></th>
-    <th>Name</th>
-    <th>Quantity</th>
-  </thead>
-  <tbody>
-    <% @order.order_products.each do |order_product| %>
-      <tr>
-        <td>
-
-          <%= link_to '', order_product_path(order_product), method: :delete, class: 'glyphicon glyphicon-remove-circle', autofocus: true %>
-        </td>
-        <td><%= order_product.product.product_name %></td>
-        <td><%= order_product.quantity %></td>
-      </tr>
-    <% end %>
-  </tbody>
   <%end %>
-</table>
 
 <%= link_to 'Edit', edit_order_path(@order) %> |
 <%= link_to 'print', 'javascript:void(0);', class: 'take-print' %> |
 <%=   link_to 'Generate PDF', order_path(@order, {format: :pdf}) %> |
 <%= link_to 'Back', orders_path %>
-
-<div id="page_print" type="hidden">
-
-</div>

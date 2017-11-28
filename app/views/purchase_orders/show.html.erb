@@ -41,7 +41,7 @@
               <%#=  id = order_product.id %>
               <%#= @purchase_order_product = PurchaseOrderProduct.find_by_id ( id )%>
               <%# @order_product = @purchase_order_product.name %>
-              <%=  link_to 'Edit', edit_purchase_order_purchase_order_product_path(@purchase_order,purchase_order_product), class: 'btn btn-success' %>
+              <%=  link_to 'Edit', edit_purchase_order_purchase_order_product_path(@purchase_order.id,purchase_order_product.id), class: 'btn btn-success' %>
               <%=  link_to 'Delete', purchase_order_purchase_order_product_path(@purchase_order, purchase_order_product), method: :delete, class: 'btn btn-danger' %>
               <%#= link_to 'Edit Order',  edit_purchase_order_purchase_order_product_path(@purchase_order,purchase_order_product), class: 'btn btn-success pull-right', id: 'update_purchase_order_products' %>
               <%#= link_to '', update_products_purchase_order_product_path , class: 'fa fa-edit' %>

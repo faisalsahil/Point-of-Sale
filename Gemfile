@@ -70,6 +70,8 @@ gem 'sidekiq-status'
 gem 'slim'
 
 gem 'pg'
+
+gem 'gon'
 # for pdf generation
 gem 'wkhtmltopdf-binary'
 

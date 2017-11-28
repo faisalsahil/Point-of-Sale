@@ -70,7 +70,6 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
-    @products = Product.all
     if @order.save
       flash[:success] = 'order created'
       redirect_to orders_path
@@ -109,7 +108,9 @@ class OrdersController < ApplicationController
         :id,
         :quantity,
         :product_id,
-        :unit_cost
+        :unit_cost,
+        :product_name,
+        :purchase_price
       ]
     )
   end

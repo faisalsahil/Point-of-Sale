@@ -7,38 +7,11 @@ class ProductsController < ApplicationController
 
   before_action :set_product, only: [:show, :edit, :update, :destroy,:print]
 
-  respond_to :html
+  respond_to :html, :js
 
   def index
     @products = Product.all
     respond_with(@products)
-  end
-
-  def print
-#     @printer = Escpos::Printer.new
-#
-#     # image = Escpos::Image.new 'path/to/image.png'
-# # to use automatic conversion to monochrome format (requires mini_magick gem) use:
-#     image = Escpos::Image.new 'hamza.png',{
-#         :size => '240x160'
-#     }
-#
-#     # image = Escpos::Image.new 'hamza.png', {
-#     #     convert_to_monochrome: true,
-#     #     dither: true, # the default
-#     #     extent: true, # the default
-#     # }
-#
-#     @printer.write image.to_escpos
-#
-#     @printer.to_escpos # returns ESC/POS data ready to be sent to printer
-# # on linux this can be piped directly to /dev/usb/lp0
-# # with network printer sent directly to printer socket
-# # with serial port printer it can be sent directly to the serial port
-#     @printer.to_base64
-#     # binding.pry
-#
-
   end
 
   def show
@@ -47,11 +20,12 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
-
+    @purchase_orders = PurchaseOrder.all
     # respond_with(@product, @product_natures)
   end
 
   def edit
+    @purchase_orders = PurchaseOrder.all
   end
 
   def create
@@ -59,19 +33,25 @@ class ProductsController < ApplicationController
     # barcode = SecureRandom.hex(10).upcase
     # barcode = 'TG22499'
 
-    barcode = @product.product_name
-    @product.barcode = barcode
+    # barcode = @product.product_name
+    # @product.barcode = barcode
 
-    if @product.save
-      barcode1 =  Barby::Code128B.new(barcode)
-      name = @product.product_name
-      File.open( "app/assets/images/barcodes/#{name}.png", 'w'){|f|
-        f.write barcode1.to_png(:height => 24, :margin => 5)
-      }
+      if @product.save
+        redirect_to "/purchase_orders/#{params[:product][:purchase_order_id]}/purchase_order_products/add?product_ids=#{@product.id}&purchase_order_id=#{params[:product][:purchase_order_id]}&quantities=#{0}"
+      end
+
+    # if @product.save
+
+      # barcode1 =  Barby::Code128B.new(barcode)
+      # name = @product.product_name
+      # File.open( "app/assets/images/barcodes/#{name}.png", 'w'){|f|
+      #   f.write barcode1.to_png(:height => 24, :margin => 5)
+      # }
       #  File.print( name+".png",'w')
-      respond_with(@product)
-
-    end
+      # render js: "alert('Hello Rails');"
+    #   respond_with(@product)
+    #
+    # end
   end
 
   def update
@@ -97,6 +77,6 @@ class ProductsController < ApplicationController
     end
 
     def product_params
-      params.require(:product).permit(:product_name, :product_image, :purchase_price, :sale_price, :product_description, :quantity, :expiry_date)
+      params.require(:product).permit(:product_name, :product_image, :purchase_price, :sale_price, :product_description, :quantity, :expiry_date, :purchase_order_id)
     end
 end

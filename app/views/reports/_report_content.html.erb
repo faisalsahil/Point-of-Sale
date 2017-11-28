@@ -1,6 +1,4 @@
-
 <div class="panel panel-success">
-
   <table class="table table-striped ">
     <div class="panel-heading">
       <div class="panel-heading">
@@ -9,9 +7,9 @@
           <th>Item Name</th>
           <th>Order Number</th>
           <th>Quantity</th>
-          <th>Stock</th>
-          <th>Unit Price</th>
-          <th>Price</th>
+          <th>Sale Price</th>
+          <th>Purchase Price</th>
+          <th>Total Price</th>
           <th>Order Discount</th>
         </thead>
       </div>
@@ -20,16 +18,14 @@
           <% total_price = 0%>
           <% discounted_price = 0 %>
           <% @order_products.each_with_index do |order_product, index|  %>
-            <% product = order_product.product
-               order   = order_product.order
-            %>
+            <% order   = order_product.order %>
             <tr>
               <td><%= index + 1 %></td>
-              <td><%= product.product_name %></td>
-              <td><%= order.id %></td>
+              <td><%= order_product.product_name %></td>
+              <td><%= order_product.order_id %></td>
               <td><%= order_product.quantity %></td>
-              <td><%= product.quantity %></td>
               <td><%= order_product.unit_cost %></td>
+              <td><%= order_product.purchase_price %></td>
               <td><% price=order_product.quantity*order_product.unit_cost
                      total_price=total_price+price %><%= price %></td>
               <td><%= order.discount %></td>
@@ -43,7 +39,7 @@
             <td></td>
             <td></td>
             <td></td>
-            <td> Total Price :</td>
+            <td> Total Sale :</td>
             <td><%= total_price %></td>
           </tr>
           <tr>

@@ -30,10 +30,10 @@ class PurchaseOrderProductsController < ApplicationController
   end
   def edit
     # binding.pry
-    @purchase_order = PurchaseOrder.find_by_id(params[:purchase_order_id])
+    # @purchase_order = PurchaseOrder.find_by_id(params[:purchase_order_id])
     # @purchase_order_product = @purchase_order.purchase_order_products.find_by_id(params[:id])
     # @purchase_order_product = @purchase_order.purchase_order_products.find_by_id(params[:purchase_order_product][:id])
-    @purchase_order_product = PurchaseOrderProduct.find_by_purchase_order_id(@purchase_order)
+    @purchase_order_product = PurchaseOrderProduct.find_by_id(params[:id])
     # @purchase_order_product.purchase_quantity = params[:purchase_order_product][:purchase_quantity]
     # @purchase_order_product.save!
 
@@ -41,8 +41,8 @@ class PurchaseOrderProductsController < ApplicationController
 
   def update
     # binding.pry
-    @purchase_order = PurchaseOrder.find_by_id(params[:purchase_order_id])
-    @purchase_order_product = PurchaseOrderProduct.find_by_purchase_order_id(@purchase_order)
+    # @purchase_order = PurchaseOrder.find_by_id(params[:purchase_order_id])
+    @purchase_order_product = PurchaseOrderProduct.find_by_id(params[:id])
     @purchase_order_product.purchase_quantity = params[:purchase_order_product][:purchase_quantity]
     if @purchase_order_product.save!
       flash[:success] = 'Successfully updated.'

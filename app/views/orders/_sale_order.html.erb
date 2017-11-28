@@ -5,13 +5,16 @@
   #selector-div { display: none; }
   #added_products td:nth-child(1),th:nth-child(1) { display: none; }
   #added_products td:nth-child(3),th:nth-child(3) { display: none; }
-  #added_products td:nth-child(5),th:nth-child(5) { width: 20px; }
-  #added_products td:nth-child(2),th:nth-child(2) { width: 20px; }
-  #added_products td:nth-child(6),th:nth-child(6) { width: 20px; }
   #added_products td:nth-child(8),th:nth-child(7) { display: none; }
   .order-item-quantity-input{ border: none; text-align: left;}
   #discount_percentage{ border: none; text-align: right;}
   #table-values{position: relative;float: none !important;}
+  @page {
+    size: 297mm 210mm; /* landscape */
+    /* you can also specify margins here: */
+    margin: 25mm;
+    margin-right: 45mm; /* for compatibility with both A4 and Letter */
+  }
 </style>
 <div class="row">
   <%= form_for(@order) do |f| %>
@@ -32,7 +35,7 @@
 
           <div id="selector-div" class="col-md-6" style="margin-bottom:10px;">
             <% if @products.present? %>
-                Search Products:<%=  select_tag "products", options_for_select(@products.try(:collect) { |u| [u.product_name , "#{u.id}:#{u.product_name}:#{u.sale_price.to_s}: #{u.quantity}"]}), {:id =>"chosen-select",:style=>'width:250px;',class: 'asdasd',  multiple: 'multiple'} %>
+                Search Products:<%=  select_tag "products", options_for_select(@products.try(:collect) { |u| [u.product_name , "#{u.id}:#{u.product_name}:#{u.sale_price.to_s}: #{u.quantity}:#{u.purchase_price}"]}), {:id =>"chosen-select",:style=>'width:250px;',class: 'asdasd',  multiple: 'multiple'} %>
             <% end %>
           </div>
           <div>
@@ -42,7 +45,7 @@
           <%= f.fields_for :order_products, onsubmit: "calculateQuantity();" do |order_product_form|  %>
               <p>
                 <%= order_product_form.text_field :product_id  %>
-                </p>
+              </p>
           <% end %>
         </div>
       </div>
@@ -80,13 +83,9 @@
           </tbody>
         </table>
 
-
-        <input id="print_btn" type="button"  value = "print" onclick="PrintDiv();" class="print btn btn-primary" style=" width: 100% ; border-radius: 0px;background-color: rgb(0,221,147)">
-        </input>
-
         <div class="row" id="action_btn">
           <div class="col-md-4" style="width: 50%">
-            <%= f.submit 'Save',{:style =>'margin-top:5px ; width: 100%', :class => 'btn btn-primary save'  } %>
+            <%= f.submit 'Save',{:style =>'margin-top:5px ; width: 100%', :class => 'btn btn-primary save', :onclick => "PrintDiv();"  } %>
           </div>
           <div class="col-md-3"style="width: 50%">
             <a style=" width: 100% ;margin-top:5px ; border-radius: 0px;background-color: darkgrey"  class="btn btn-default">&nbsp;Cancel&nbsp;</a>

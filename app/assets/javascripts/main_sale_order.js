@@ -8,12 +8,13 @@ $(document).ready(function() {
 
     $("#chosen-select").on("select2:select", function (evt) {
         var data = $("#chosen-select").select2("data")[0].id;
-
+        console.log(data);
         var arr    = data.split(':');
         var pro_id = arr[0];
         var text   = arr[1];
         var s_price= arr[2];
         var stock  = arr[3];
+        var p_price  = arr[4];
         var tot    = s_price * 1;
         // Append to order sheet
 
@@ -30,10 +31,12 @@ $(document).ready(function() {
         {
             var html = "<tr class='order-item-tr' id='pro_"+ pro_id +"'>" +
                 "<td id = 'pro_id'>" + pro_id +
-                "<input name='order[order_products_attributes][][product_id]' type='hidden' value='" + pro_id + "'></td>" +
+                "<input name='order[order_products_attributes][][product_id]' type='hidden' value='" + pro_id + "'>" +
+                "<input name='order[order_products_attributes][][product_name]' type='hidden' value='" + text + "'>" +
+                "<input name='order[order_products_attributes][][purchase_price]' type='hidden' value='" + p_price + "'></td>" +
                 "<td>" + text + "</td>" +
                 "<td class='order-item-stock'>" + stock + "</td>" +
-                "<input name='order[order_products_attributes][][unit_cost]' type='hidden' value='" + s_price + "'></td>" +
+                "<input name='order[order_products_attributes][][unit_cost]' type='hidden' value='" + s_price + "'>" +
                 "<td class='order-item-sale-price'>" + s_price + "</td>" +
                 "<td><input class='order-item-quantity-input' name='order[order_products_attributes][][quantity]' id='quantity' type='text' value='1' style='width:30%' ></td>" +
                 "<td class='order-item-total'>" + tot + "</td>" +
@@ -88,11 +91,11 @@ function calculateTotalPriceofItem(orderItemTR) {
     }
 }
 
-$(function(){
-    $('#save').on('submit', function(e){
-
-    });
-});
+// $(function(){
+//     $('#save').on('submit', function(e){
+//
+//     });
+// });
 
 function calculateGrossAmountTotal() {
     var gross_total = 0;
