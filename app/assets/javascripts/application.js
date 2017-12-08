@@ -20,6 +20,9 @@
 //= require bootstrap-datepicker
 //= require jquery.dataTables
 //= require main
+//= require reminders
+//= require jsclock-0.8
+//= require dashboard
 //
 //
 // function order_by_occurrence(arr) {

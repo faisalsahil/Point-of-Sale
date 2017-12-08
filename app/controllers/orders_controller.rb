@@ -61,6 +61,7 @@ class OrdersController < ApplicationController
   def sale_order
     @order = Order.new
     @products = Product.where("quantity > ?", 0)
+    @order_number = SecureRandom.hex(3).upcase
   end
 
   def edit
@@ -72,7 +73,7 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     if @order.save
       flash[:success] = 'order created'
-      redirect_to orders_path
+      redirect_to sale_order_orders_path
 
     else
       flash[:failure] = 'sorry'
@@ -103,6 +104,7 @@ class OrdersController < ApplicationController
   
   def order_params
     params.require(:order).permit(
+        :order_id,
         :discount,
         order_products_attributes: [
         :id,

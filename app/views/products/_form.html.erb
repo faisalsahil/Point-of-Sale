@@ -36,7 +36,8 @@
           </div>
           <div class="field">
             <%= f.label :purchase_order_id %><br>
-            <%= f.select :purchase_order_id, options_for_select(@purchase_orders.collect{ |u| [u.name, u.id] }, selected: @product.purchase_order_id), class: 'purchase_order_list'  %>
+            <%= f.select :purchase_order_id, options_for_select(@purchase_orders.collect{ |u| [u.name, u.id] }, selected: @product.purchase_order_id), class: 'purchase_order_list', prompt: 'Select Purchase Order'  %>
+            <%= text_field_tag :purchase_order, nil, placeholder: ' if not Available', disabled: false %>
           </div>
           <div class="field">
             <%= f.label :product_description %><br>

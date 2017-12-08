@@ -6,14 +6,16 @@
   #added_products td:nth-child(1),th:nth-child(1) { display: none; }
   #added_products td:nth-child(3),th:nth-child(3) { display: none; }
   #added_products td:nth-child(8),th:nth-child(7) { display: none; }
-  .order-item-quantity-input{ border: none; text-align: left;}
-  #discount_percentage{ border: none; text-align: right;}
-  #table-values{position: relative;float: none !important;}
+  .order-item-quantity-input{ border: none; text-align: center;}
+  #discount_percentage{ border: none; text-align: left;}
+  #table-values{position: relative;}
+  #sale_h5{float:left;}
   @page {
-    size: 297mm 210mm; /* landscape */
+    size: 4in 8in;/* landscape */
+    /*width: 4in;*/
+    /*height: auto;*/
     /* you can also specify margins here: */
-    margin: 25mm;
-    margin-right: 45mm; /* for compatibility with both A4 and Letter */
+    /*margin: 25mm;*/ /* for compatibility with both A4 and Letter */
   }
 </style>
 <div class="row">
@@ -36,6 +38,7 @@
           <div id="selector-div" class="col-md-6" style="margin-bottom:10px;">
             <% if @products.present? %>
                 Search Products:<%=  select_tag "products", options_for_select(@products.try(:collect) { |u| [u.product_name , "#{u.id}:#{u.product_name}:#{u.sale_price.to_s}: #{u.quantity}:#{u.purchase_price}"]}), {:id =>"chosen-select",:style=>'width:250px;',class: 'asdasd',  multiple: 'multiple'} %>
+                <%= f.hidden_field :order_id, :value => @order_number %>
             <% end %>
           </div>
           <div>
@@ -49,7 +52,6 @@
           <% end %>
         </div>
       </div>
-
       <div id="table-values" style="width:30%; float:right">
         <br class="col-md-4">
         <br class="col-md-12">

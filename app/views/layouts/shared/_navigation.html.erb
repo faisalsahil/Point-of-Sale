@@ -1,15 +1,15 @@
 <% if user_signed_in? %>
       <header class="main-header hidden-print col-md-12 "  style="background-color: rgb(0,221,147)">
-        <a class="logo"  href="index.html" style="background-color: rgb(0,221,147)">
+        <a class="logo"  href="<%= root_path %>" style="background-color: rgb(0,221,147)">
           <img src="/assets/logor.png">
         </a>
         <nav class="navbar navbar-inverse" style="background-color: rgb(0,221,147)">
           <a class="sidebar-toggle" data-toggle="oncanvas" ></a>
             <ul class="top-nav" style="float: left">
               <!--Notification Menu-->
-              <li class="">
-                <a class="dropdown-toggle"  data-toggle="dropdown" aria-expanded="false"> <i class="fa fa-user fa-lg"></i>  People</a>
-              </li>
+              <!--<li class="">-->
+                <!--<a class="dropdown-toggle"  data-toggle="dropdown" aria-expanded="false"> <i class="fa fa-user fa-lg"></i>  People</a>-->
+              <!--</li>-->
               <li class="dropdown notification-menu">
                 <a  class="dropdown-toggle"  data-toggle="dropdown" aria-expanded="false">
                 <i class="fa fa-product-hunt fa-lg"></i> Products <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
@@ -46,6 +46,7 @@
                   <li>
                     <a href="page-user.html"><i class="fa fa-cog fa-lg"></i> Settings</a>
                     <a href="page-user.html"><i class="fa fa-user fa-lg"></i> Profile</a>
+                    <%= link_to('Logout', destroy_user_session_path, method: :delete, class: 'fa fa-sign-out fa-lg') %>
                   </li>
                 </ul>
               </li>

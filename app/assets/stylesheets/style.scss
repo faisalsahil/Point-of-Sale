@@ -15,6 +15,39 @@ body {
   margin-left: 15px;
 }
 
+#sale_h5{
+  float: right;
+  border:1px solid;
+}
+
+#product_purchase_order_id {
+  width:170px;
+  height: 25px;
+}
+#clock-div {
+  font-size: 100px;
+  text-align: center;
+}
+
+#date_div {
+  font-size: 100px;
+  text-align: center;
+}
+
+#day_div {
+  font-size: 100px;
+  text-align: center;
+}
+
+@media print{
+  #h3_sale {
+    display: none;
+  }
+  #notice {
+    display: none;
+  }
+}
+
 #added_products{
   margin-left: 15px;
 }

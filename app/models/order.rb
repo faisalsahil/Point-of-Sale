@@ -3,7 +3,7 @@ class Order < ActiveRecord::Base
   has_many :order_products, dependent: :destroy
   has_many :products, through: :order_products
 
-
+  validates :order_id, uniqueness: true
   before_create :set_order_number
 
   belongs_to :product

@@ -37,7 +37,18 @@ class ProductsController < ApplicationController
     # @product.barcode = barcode
 
       if @product.save
-        redirect_to "/purchase_orders/#{params[:product][:purchase_order_id]}/purchase_order_products/add?product_ids=#{@product.id}&purchase_order_id=#{params[:product][:purchase_order_id]}&quantities=#{0}"
+        # binding.pry
+        if params[:purchase_order].present?
+          purchase_order = PurchaseOrder.new
+          purchase_order.name = params[:purchase_order]
+          purchase_order.save
+
+          redirect_to "/purchase_orders/#{purchase_order.id}/purchase_order_products/add?product_ids=#{@product.id}&purchase_order_id=#{purchase_order.id}&quantities=#{0}"
+        else
+          redirect_to "/purchase_orders/#{params[:product][:purchase_order_id]}/purchase_order_products/add?product_ids=#{@product.id}&purchase_order_id=#{params[:product][:purchase_order_id]}&quantities=#{0}"
+        end
+
+        # redirect_to products_path
       end
 
     # if @product.save
@@ -77,6 +88,6 @@ class ProductsController < ApplicationController
     end
 
     def product_params
-      params.require(:product).permit(:product_name, :product_image, :purchase_price, :sale_price, :product_description, :quantity, :expiry_date, :purchase_order_id)
+      params.require(:product).permit(:product_name, :product_image, :purchase_price, :sale_price, :product_description, :quantity, :expiry_date, :purchase_order_id, :purchase_order)
     end
 end
