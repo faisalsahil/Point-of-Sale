@@ -3,21 +3,39 @@
   #print_btn { display: none; }
   #action_btn { display: none; }
   #selector-div { display: none; }
-  #added_products td:nth-child(1),th:nth-child(1) { display: none; }
-  #added_products td:nth-child(3),th:nth-child(3) { display: none; }
-  #added_products td:nth-child(8),th:nth-child(7) { display: none; }
+
+  #added_products td:nth-child(1), #added_products th:nth-child(1) { display: none; }
+  #added_products td:nth-child(3), #added_products th:nth-child(3) { display: none; }
+  #added_products td:nth-child(8), #added_products th:nth-child(7) { display: none; }
+
   .order-item-quantity-input{ border: none; text-align: center;}
   #discount_percentage{ border: none; text-align: left;}
-  #table-values{position: relative;}
-  #sale_h5{float:left;}
+  #table-values{display: none;}
+  #sale_h5{margin-right: 30%;}
+  #table-discount{display: block!important; margin-left: 15px;}
+  footer{display: none;}
   @page {
-    size: 4in 8in;/* landscape */
+    size: 5in 7in;/* landscape */
+    font-size: 10px;
     /*width: 4in;*/
     /*height: auto;*/
     /* you can also specify margins here: */
     /*margin: 25mm;*/ /* for compatibility with both A4 and Letter */
   }
 </style>
+
+<div id="table-discount" style="display: none;" class="row">
+  <div class="col-md-8">
+    <h5 style="font-weight: bold;">Naseem Pharmacy</h5>
+    <br>
+  </div>
+</div>
+<pre id="sale_h5" class="pull-right">
+  <strong><%= "Order#: #{@order_number}" %></strong>
+  <strong><%= "Date:  #{Date.today.strftime('%d/%m/%Y')}" %></strong>
+</pre>
+
+<div class="clearfix"></div>
 <div class="row">
   <%= form_for(@order) do |f| %>
 
@@ -52,13 +70,33 @@
           <% end %>
         </div>
       </div>
+      <div id="table-discount" style="display: none" class="col-md-6">
+        <table class="table table-striped table-bordered ">
+          <thead>
+            <tr>
+              <th>Gross Amount</th>
+              <th>Discount%</th>
+              <th>Total Discount</th>
+              <th>Net Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td id="gross_amount1" > 0 </td>
+              <td id="discount_percentage1"></td>
+              <td id="discount_amount1"> 0 </td>
+              <td id="net_amount1"> 0 </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       <div id="table-values" style="width:30%; float:right">
         <br class="col-md-4">
         <br class="col-md-12">
         <table class="table table-striped "  style="font-size:84px" >
 
-          <td style="background-color: rgb(0,221,147);color: white"><h3>Total </h3></td>
-          <td style="background-color: rgb(0,221,147);color: white ;text-align: right"><h3 id="total_amount">0.0</h3></td>
+          <td style="background-color: #575C55;color: white"><h3>Total </h3></td>
+          <td style="background-color: #575C55;color: white ;text-align: right"><h3 id="total_amount">0.0</h3></td>
           <tbody>
 
           <tr>
@@ -87,14 +125,24 @@
 
         <div class="row" id="action_btn">
           <div class="col-md-4" style="width: 50%">
-            <%= f.submit 'Save',{:style =>'margin-top:5px ; width: 100%', :class => 'btn btn-primary save', :onclick => "PrintDiv();"  } %>
+            <%= f.submit 'Save',{:style =>'margin-top:5px ; width: 100%', :class => 'btn btn-style save', :onclick => "PrintDiv();"  } %>
           </div>
           <div class="col-md-3"style="width: 50%">
-            <a style=" width: 100% ;margin-top:5px ; border-radius: 0px;background-color: darkgrey"  class="btn btn-default">&nbsp;Cancel&nbsp;</a>
+            <a style=" width: 100% ;margin-top:5px ; border-radius: 0px;  " class=" btn btn-info">&nbsp;Cancel&nbsp;</a>
           </div>
         </div>
   <% end %>
 
   </div>
+</div>
+<div id="table-discount" style="display: none">
+  <strong>Address:</strong><span>Petergill colony LDA quarter walton road Lahore</span>
+  <br/>
+  <strong>Phone:</strong><span>042 359 20 231</span>
+</div>
+<br>
+<br>
+<div id="table-discount" style="display: none" class="text-center">
+  <pre style="font-size: 8px;">Powered by:  Faisal Bhatti | 0332 416 77 29</pre>
 </div>
 

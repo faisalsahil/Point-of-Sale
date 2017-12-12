@@ -6,8 +6,8 @@
 {
   background-color: rgb(255,255,255);
   border-style:  solid; 
-  border-color: rgb(10,202,145);
-  border-width: 38px; 
+  border-color: #575C55;
+  border-width: 38px;
   height: auto;
   width: 1530;
 }
@@ -16,7 +16,7 @@
  {
   font-family: calibri ;
   font-size: 38px; 
-  color: rgb(10,202,145);
+  color: #575C55;
   margin-top: 15%;
 }
 #subHeading
@@ -39,7 +39,7 @@
      line-height: 2.714285714;
      text-align: center; 
      margin-left: 33% ; 
-     margin-top:2% ; 
+     margin-top:2% ;
      font-family: calibri;
  }
 
@@ -49,9 +49,10 @@
      line-height: 2.714285714;
      text-align: center;
      margin-left: 33% ; 
-     margin-top:2% ; 
-     font-family: calibri;
-     background-color:  rgb(10,202,145); 
+     margin-top:2% ;
+     color: #fff;
+     /*font-family: calibri;*/
+     background-color:  #575C55;
 }
 #RestorePassBtn
 {
@@ -106,4 +107,63 @@
 #hidden_div
 {
     display: none;
+}
+
+.notification-menu {
+    float:left;
+}
+.user_menu {
+    float: right;
+}
+
+.navigation_nav {
+    width: 100%;
+}
+
+.btn-style {
+    color: #fff!important;
+    background-color: #575C55;
+}
+
+.panel-primary>.panel-heading {
+    background-color: #428bca!important;
+    border-color: #428bca!important;
+}
+.time-details {
+    margin-left: 140px;
+}
+.dashboard-details {
+    border: 1px solid #428bca;
+    margin-left: -140px;
+}
+.dashboard-details .well {
+    margin-bottom: 0;
+    box-shadow: none;
+    border-radius: 0;
+    border: none;
+    color: #fff;
+    font-size: 30px;
+}
+.orange {
+    background-color: #3BB273;
+}
+
+.red {
+    background-color: #D11149;
+}
+body {
+    background-color: lightslategray;
+}
+
+.content-wrapper {
+    height: inherit;
+    padding-bottom: 50px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 0.25% 0%;
+    background-color: #E5E5E5;
 }

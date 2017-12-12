@@ -1,11 +1,11 @@
 <% if user_signed_in? %>
-      <header class="main-header hidden-print col-md-12 "  style="background-color: rgb(0,221,147)">
-        <a class="logo"  href="<%= root_path %>" style="background-color: rgb(0,221,147)">
-          <img src="/assets/logor.png">
+      <header class="main-header hidden-print col-md-12 "  style="background-color: #575C55">
+        <a class="logo"  href="<%= root_path %>" style="background-color: #575C55">
+          <img src="/assets/logor.png" style="margin-top: 10px">
         </a>
-        <nav class="navbar navbar-inverse" style="background-color: rgb(0,221,147)">
-          <a class="sidebar-toggle" data-toggle="oncanvas" ></a>
-            <ul class="top-nav" style="float: left">
+        <nav class="navbar navbar-inverse" style="background-color: #575C55">
+          <!--<a class="sidebar-toggle" data-toggle="oncanvas" ></a>-->
+            <ul class="top-nav navigation_nav" style="float: left">
               <!--Notification Menu-->
               <!--<li class="">-->
                 <!--<a class="dropdown-toggle"  data-toggle="dropdown" aria-expanded="false"> <i class="fa fa-user fa-lg"></i>  People</a>-->
@@ -39,13 +39,13 @@
               </li>
 
               <!-- User Menu-->
-              <li class="dropdown notification-menu">
+              <li class="dropdown notification-menu user_menu">
                 <a  class="dropdown-toggle"   data-toggle="dropdown" aria-expanded="false">
                 <b> Welcome, <%=  current_user.email %> <i class="fa fa-chevron-down" aria-hidden="true"></i></b></a>
                 <ul class="dropdown-menu">
                   <li>
-                    <a href="page-user.html"><i class="fa fa-cog fa-lg"></i> Settings</a>
-                    <a href="page-user.html"><i class="fa fa-user fa-lg"></i> Profile</a>
+                    <a href="#"><i class="fa fa-cog fa-lg"></i> Settings</a>
+                    <a href="#"><i class="fa fa-user fa-lg"></i> Profile</a>
                     <%= link_to('Logout', destroy_user_session_path, method: :delete, class: 'fa fa-sign-out fa-lg') %>
                   </li>
                 </ul>

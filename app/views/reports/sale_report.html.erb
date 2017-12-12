@@ -14,14 +14,14 @@
           To date:<%= text_field_tag :to_date, nil, class: 'datepicker form-control', placeholder: 'optional' %>
         </div>
         <div class="form-group">
-          <button type="submit" class="btn btn-xs btn-primary" id="generate_report_button"  style="line-height: 0px;" >Generate</button>
+          <button type="submit" class="btn btn-xs btn-info" id="generate_report_button"  style="line-height: 0px;" >Generate</button>
         </div>
     <% end %>
   </div>
 
 </div>
 
-  <%= link_to "Download Pdf",'javascript:void(0)',id: 'pdf_download', class: 'btn btn-success pull-right'  %>
+  <%= link_to "Download Pdf",'javascript:void(0)',id: 'pdf_download', class: 'btn btn-style pull-right'  %>
 
 <div id="report">
   <% if @order_products.present? %>

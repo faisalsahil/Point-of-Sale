@@ -1,27 +1,46 @@
-<div id="clock-div">
-</div>
-<div id= "date_div">
-  <% @date = Time.now %>
-  <span style="font-size:100px;"><%= @date.strftime("#{@date.day}-#{@date.month}-%Y")%></span>
-</div>
-<div id="day_div">
-  <% @date = Time.now
-     day = @date.strftime("%A")
-     if day == 'Monday'
-       day = 'سوموار'
-     elsif day == 'Tuesday'
-       day = 'منگل'
-     elsif day == 'Wednesday'
-       day = 'بدھ'
-     elsif day == 'Thursday'
-       day = 'جمعرات'
-     elsif day == 'Friday'
-       day = 'جمعہ'
-     elsif day == 'Saturday'
-       day = 'ہفتے'
-     elsif day == 'Sunday'
-       day = 'اتوار'
-     end
-  %>
-  <span style="font-size:80px;"><%= day %></span>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="col-lg-6 dashboard-details">
+        <div class="row well orange">
+          <strong>Total Items </strong><span class="pull-right"><%= @products %> </span>
+        </div>
+        <div class="row well bg-primary">
+          <strong>Today Orders </strong><span class="pull-right"><%= @orders %> </span>
+        </div>
+        <div class="row well red">
+          <strong>Today Sale </strong><span class="pull-right"><%= "Rs. #{@total_sale_today}" %></span>
+        </div>
+      </div>
+      <div class="col-lg-6 time-details">
+        <div id="clock-div">
+        </div>
+        <div id= "date_div">
+          <% @date = Time.now %>
+          <span style="font-size:60px;"><%= @date.strftime("#{@date.day}-#{@date.month}-%Y")%></span>
+        </div>
+        <div id="day_div">
+          <% @date = Time.now
+             day = @date.strftime("%A")
+             if day == 'Monday'
+               day = 'سوموار'
+             elsif day == 'Tuesday'
+               day = 'منگل'
+             elsif day == 'Wednesday'
+               day = 'بدھ'
+             elsif day == 'Thursday'
+               day = 'جمعرات'
+             elsif day == 'Friday'
+               day = 'جمعہ'
+             elsif day == 'Saturday'
+               day = 'ہفتے'
+             elsif day == 'Sunday'
+               day = 'اتوار'
+             end
+          %>
+          <span style="font-size:60px;"><%= day %></span>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

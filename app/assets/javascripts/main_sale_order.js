@@ -38,7 +38,7 @@ $(document).ready(function() {
                 "<td class='order-item-stock'>" + stock + "</td>" +
                 "<input name='order[order_products_attributes][][unit_cost]' type='hidden' value='" + s_price + "'>" +
                 "<td class='order-item-sale-price'>" + s_price + "</td>" +
-                "<td><input class='order-item-quantity-input' name='order[order_products_attributes][][quantity]' id='quantity' type='text' value='1' style='width:30%' ></td>" +
+                "<td style='width:20%'><input class='order-item-quantity-input' name='order[order_products_attributes][][quantity]' id='quantity' type='text' value='1' style='width:30%' ></td>" +
                 "<td class='order-item-total'>" + tot + "</td>" +
                 "<td><a href='#' class='remove_item' ><span class='fa fa-close'></span></a></td>" +
                 "</tr>";
@@ -117,4 +117,9 @@ function calculateNetAmount() {
     $('#discount_amount').text(disc_total);
     $('#total_amount').text(net_amount);
     $('#net_amount').text(net_amount);
+
+    $('#gross_amount1').text(gross_amount);
+    $('#discount_percentage1').text(disc_percentage);
+    $('#discount_amount1').text(disc_total);
+    $('#net_amount1').text(net_amount);
 }

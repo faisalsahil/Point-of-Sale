@@ -8,11 +8,11 @@
     <%= javascript_include_tag 'application' %>
   </head>
 
-  <body style="background-color: rgb(233,235,238)">
+  <body>
     <%= render 'layouts/shared/navigation' %>
     <%#= render 'layouts/shared/sidebar' %>
     <!--<br><br><br><br>-->
-    <div class="content-wrapper" style="height: auto;">
+    <div class="content-wrapper" style="background-color: lightslategray">
       <div class="container">
         <div style="margin-top: 8%;">
           <%= render 'layouts/shared/messages' %>
@@ -21,5 +21,6 @@
 
       </div>
     </div>
+    <%= render 'layouts/shared/footer' %>
   </body>
 </html>

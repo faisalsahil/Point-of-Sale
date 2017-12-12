@@ -25,18 +25,26 @@ body {
   height: 25px;
 }
 #clock-div {
-  font-size: 100px;
+  font-size: 80px;
   text-align: center;
+  background-color: #01BAEF;
+  color: #fff;
+  margin-bottom: 20px;
 }
 
 #date_div {
-  font-size: 100px;
+  font-size: 50px;
   text-align: center;
+  background-color: #870058;
+  color: #fff;
+  margin-bottom: 20px;
 }
 
 #day_div {
-  font-size: 100px;
+  font-size: 50px;
   text-align: center;
+  background-color: #5F0A87;
+  color: #fff;
 }
 
 @media print{
