@@ -18,12 +18,10 @@ class ReportsController < ApplicationController
       format.js{ render :layout => false }
       format.pdf do
         render :pdf  => "sale_report",
-               :javascript_delay => 5000,
                disposition:    'attachment',
                layout:         'pdf.html', # use 'pdf.html' for a pdf.html.erb file
                page_offset:    0,
                book:           false,
-               :javascript_delay => 5000,
                orientation:    'Landscape',
                # page_width: '2000',
                # dpi: '300',
