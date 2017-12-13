@@ -65,14 +65,12 @@ class OrdersController < ApplicationController
   end
 
   def edit
-    # binding.pry
     @order_products = @order.order_products
   end
 
   def create
     @order = Order.new(order_params)
     if @order.save
-      flash[:success] = 'order created'
       redirect_to sale_order_orders_path
 
     else
