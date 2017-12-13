@@ -17,9 +17,12 @@
         <tbody>
           <% total_price = 0%>
           <% discounted_price = 0 %>
+          <% purchase_price_total = 0 %>
+          <% total_profit = 0 %>
 
           <% @order_products.each_with_index do |order_product, index|  %>
-            <% order   = order_product.order %>
+            <% order   = order_product.order
+            %>
             <tr>
               <td><%= index + 1 %></td>
               <td><%= order_product.product_name %></td>
@@ -30,6 +33,9 @@
               <td>
                 <% price       = order_product.quantity*order_product.unit_cost
                    total_price = total_price+price
+                %>
+                <% purchase_price       = order_product.quantity*order_product.purchase_price
+                   purchase_price_total = purchase_price_total+purchase_price
                 %>
                 <%= price %>
               </td>
@@ -56,7 +62,18 @@
             <td></td>
             <td></td>
             <td> Discounted Price :</td>
-            <td><%= discounted_price %></td>
+            <td><%= discounted_price.round(2) %></td>
+          </tr>
+
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td> Profit :</td>
+            <td><%= (discounted_price - purchase_price_total) %></td>
           </tr>
 
         </tbody>

@@ -167,3 +167,7 @@ footer {
     padding: 0.25% 0%;
     background-color: #E5E5E5;
 }
+
+#submitButton {
+    margin-bottom: 17%;
+}

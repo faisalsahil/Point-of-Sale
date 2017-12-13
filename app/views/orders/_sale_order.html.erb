@@ -30,12 +30,9 @@
     <br>
   </div>
 </div>
-<pre id="sale_h5" class="pull-right">
-  <strong><%= "Order#: #{@order_number}" %></strong>
-  <strong><%= "Date:  #{Date.today.strftime('%d/%m/%Y')}" %></strong>
-</pre>
 
-<div class="clearfix"></div>
+
+
 <div class="row">
   <%= form_for(@order) do |f| %>
 
@@ -91,8 +88,13 @@
         </table>
       </div>
       <div id="table-values" style="width:30%; float:right">
-        <br class="col-md-4">
-        <br class="col-md-12">
+        <!--<br class="col-md-4">-->
+        <!--<br class="col-md-12">-->
+        <pre id="sale_h5" class="pull-right">
+          <strong><%= "Order#: #{@order_number}" %></strong>
+          <strong><%= "Date:  #{Date.today.strftime('%d/%m/%Y')}" %></strong>
+        </pre>
+
         <table class="table table-striped "  style="font-size:84px" >
 
           <td style="background-color: #575C55;color: white"><h3>Total </h3></td>

@@ -1,7 +1,7 @@
 <% if user_signed_in? %>
       <header class="main-header hidden-print col-md-12 "  style="background-color: #575C55">
         <a class="logo"  href="<%= root_path %>" style="background-color: #575C55">
-          <img src="/assets/logor.png" style="margin-top: 10px">
+          <img src="/assets/logor.png" style="margin-top: 5px; width: 83%;">
         </a>
         <nav class="navbar navbar-inverse" style="background-color: #575C55">
           <!--<a class="sidebar-toggle" data-toggle="oncanvas" ></a>-->
@@ -44,8 +44,7 @@
                 <b> Welcome, <%=  current_user.email %> <i class="fa fa-chevron-down" aria-hidden="true"></i></b></a>
                 <ul class="dropdown-menu">
                   <li>
-                    <a href="#"><i class="fa fa-cog fa-lg"></i> Settings</a>
-                    <a href="#"><i class="fa fa-user fa-lg"></i> Profile</a>
+                    <%= link_to('Edit Profile', edit_user_registration_path, class: 'fa fa-user fa-lg') %>
                     <%= link_to('Logout', destroy_user_session_path, method: :delete, class: 'fa fa-sign-out fa-lg') %>
                   </li>
                 </ul>

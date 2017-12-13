@@ -2,58 +2,85 @@
 <%= javascript_include_tag "http://code.jquery.com/ui/1.10.3/jquery-ui.min.js" %>
 
 <br/>
-  <table class="table table-striped ">
-        <thead>
-        <th>No#</th>
-        <th>Item Name</th>
-        <th>Order Number</th>
-        <th>Quantity</th>
-        <th>Stock</th>
-        <th>Unit Price</th>
-        <th>Price</th>
-        <th>Order Discount</th>
-        </thead>
-        <tbody>
-        <% total_price = 0%>
-        <% discounted_price = 0 %>
-        <% @order_products.each_with_index do |order_product, index|  %>
-            <% @product = order_product.product
-               @order   = order_product.order
-            %>
-            <tr>
-              <td><%= index + 1 %></td>
-              <td><%= @product.product_name %></td>
-              <td><%= @order.id %></td>
-              <td><%= order_product.quantity %></td>
-              <td><%= @product.quantity %></td>
-              <td><%= order_product.unit_cost %></td>
-              <td><% price= order_product.quantity * order_product.unit_cost
-                     total_price=total_price+price %><%= price %></td>
-              <td><%= @order.discount %></td>
-              <% discounted_price = discounted_price + ((order_product.quantity*order_product.unit_cost) -(price*@order.discount)/100) %>
-            </tr>
-        <% end %>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td> Total Price :</td>
-          <td><%= total_price %></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td> Discounted Price :</td>
-          <td><%= discounted_price %></td>
-        </tr>
+<table class="table table-striped ">
+  <div class="panel-heading">
+    <div class="panel-heading">
+      <thead>
+      <th>No#</th>
+      <th>Item Name</th>
+      <th>Order Number</th>
+      <th>Quantity</th>
+      <th>Purchase Price</th>
+      <th>Sale Price</th>
+      <th>Total Price</th>
+      <th>Order Discount</th>
+      </thead>
+    </div>
+    <div class="panel-body">
+      <tbody>
+      <% total_price = 0%>
+      <% discounted_price = 0 %>
+      <% purchase_price_total = 0 %>
+      <% total_profit = 0 %>
 
-        </tbody>
-  </table>
+      <% @order_products.each_with_index do |order_product, index|  %>
+          <% order   = order_product.order
+          %>
+          <tr>
+            <td><%= index + 1 %></td>
+            <td><%= order_product.product_name %></td>
+            <td><%= order_product.order_id %></td>
+            <td><%= order_product.quantity %></td>
+            <td><%= order_product.purchase_price %></td>
+            <td><%= order_product.unit_cost %></td>
+            <td>
+              <% price       = order_product.quantity*order_product.unit_cost
+                 total_price = total_price+price
+              %>
+              <% purchase_price       = order_product.quantity*order_product.purchase_price
+                 purchase_price_total = purchase_price_total+purchase_price
+              %>
+              <%= price %>
+            </td>
+            <td><%= order.discount %></td>
+
+            <% discounted_price = discounted_price + (price - (price*order.discount)/100) %>
+          </tr>
+      <% end %>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td> Total Sale :</td>
+        <td><%= total_price %></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td> Discounted Price :</td>
+        <td><%= discounted_price.round(2) %></td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td> Profit :</td>
+        <td><%= (discounted_price - purchase_price_total) %></td>
+      </tr>
+
+      </tbody>
+    </div>
+  </div>
+</table>
 
