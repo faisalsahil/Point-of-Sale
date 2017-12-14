@@ -4,10 +4,25 @@
 # Plutus::Liability.create(:name => "Unearned Revenue")
 # Plutus::Liability.create(:name => "Sales Tax Payable")
 
+roles =['Admin','Cashier']
 
-u = User.new
-u.username = 'Admin'
-u.email = 'admin@gmail.com'
-u.password = 'admin123'
-u.password_confirmation = 'admin123'
-u.save!
+roles.each do |role|
+  Role.create!(name: role)
+end
+
+admin = User.new
+admin.username = 'Admin'
+admin.email = 'admin@gmail.com'
+admin.password = 'admin123'
+admin.password_confirmation = 'admin123'
+admin.role_id = Role.find_by_name(AppConstants::ADMIN).id
+admin.save!
+
+cashier = User.new
+cashier.username = 'Cashier'
+cashier.email = 'cash@gmail.com'
+cashier.password = 'admin123'
+cashier.password_confirmation = 'admin123'
+cashier.role_id = Role.find_by_name(AppConstants::CASHIER).id
+cashier.save!
+

@@ -1,4 +1,5 @@
 class RemindersController < ApplicationController
+  # load_and_authorize_resource
   
   def index
     if params[:keyword].blank?

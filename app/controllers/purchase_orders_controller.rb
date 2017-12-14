@@ -1,5 +1,6 @@
 class PurchaseOrdersController < ApplicationController
   before_action :set_purchase_order, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   before_action :set_product, only: [:new,:edit,:update,:destroy]
    # respond_to :html

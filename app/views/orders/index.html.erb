@@ -16,9 +16,12 @@
         <td><%= (order.created_at).to_date.strftime('%d-%m-%Y') %></td>
         <td>
           <%= link_to '', order, class: 'fa fa-eye' %>
-          <%= link_to '', edit_order_path(order), class: 'fa fa-edit' %>
-          <%= link_to '', order_path(order, format: :pdf), class: 'fa fa-download' %>
-          <%= link_to '', order, method: :delete, data: { confirm: 'Are you sure?' }, class: 'fa fa-trash' %>
+          <% if @current_user_role == AppConstants::ADMIN %>
+              <%= link_to '', edit_order_path(order), class: 'fa fa-edit' %>
+              <%= link_to '', order_path(order, format: :pdf), class: 'fa fa-download' %>
+              <%= link_to '', order, method: :delete, data: { confirm: 'Are you sure?' }, class: 'fa fa-trash' %>
+          <% end %>
+
         </td>
       </tr>
   <% end %>

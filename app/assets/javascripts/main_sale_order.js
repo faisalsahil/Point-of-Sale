@@ -110,7 +110,7 @@ function calculateGrossAmountTotal() {
 }
 
 function calculateNetAmount() {
-    var gross_amount   = $('#gross_amount').text();
+    var gross_amount   = $('#gross_amount').text().toFixed(2);
     var disc_percentage= parseFloat($('#discount_percentage').val()) || 0;
     var disc_total     = (gross_amount * disc_percentage) / 100;
     var net_amount     = gross_amount - disc_total;

@@ -51,6 +51,8 @@ gem 'RubyInline'
 
 gem 'puma', '~> 3.0'
 
+gem 'cancancan'
+
 gem 'pundit'
 
 gem 'plutus', :git => "https://github.com/mbulat/plutus.git", :branch => "master"

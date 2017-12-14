@@ -69,6 +69,7 @@ GEM
       railties (>= 3.0)
     builder (3.2.3)
     byebug (9.1.0)
+    cancancan (2.1.2)
     capistrano (3.4.1)
       i18n
       rake (>= 10.0.0)
@@ -326,6 +327,7 @@ DEPENDENCIES
   bootstrap-sass (= 3.2.0.2)
   bootstrap-wysihtml5-rails
   byebug
+  cancancan
   capistrano (= 3.4.1)
   capistrano-bundler (~> 1.1.2)
   capistrano-passenger

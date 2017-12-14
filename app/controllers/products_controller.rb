@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  load_and_authorize_resource
 
    require 'barby'
    require 'barby/outputter/png_outputter'
