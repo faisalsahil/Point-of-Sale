@@ -19,14 +19,14 @@ task import_items: :environment do
     product.barcode = barcodeName
     barcode1 =  Barby::Code128B.new(barcodeName)
 
-    File.open( "app/assets/images/barcodes/#{barcodeName}.png", 'w'){|f|
-      f.write barcode1.to_png(:height => 20, :margin => 5)
+    File.open( "app/assets/images#{barcodeName}.png", 'w'){|f|
+      f.write barcode1.to_png(:height => 20, :width => 20,  :margin => 5)
     }
 
     product.avatar = "#{barcodeName}.png"
-    Cloudinary::Uploader.upload("app/assets/images/barcodes/#{barcodeName}.png", :public_id => "#{barcodeName}")
+    Cloudinary::Uploader.upload("app/assets/images#{barcodeName}.png", :public_id => "#{barcodeName}")
 
-    File.delete("app/assets/images/barcodes/#{barcodeName}.png") if File.exist?("app/assets/images/barcodes/#{barcodeName}.png")
+    File.delete("app/assets/images#{barcodeName}.png") if File.exist?("app/assets/images/#{barcodeName}.png")
 
     product.save!
 
