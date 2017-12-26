@@ -38,7 +38,7 @@ $(document).ready(function() {
                 "<td class='order-item-stock'>" + stock + "</td>" +
                 "<input name='order[order_products_attributes][][unit_cost]' type='hidden' value='" + s_price + "'>" +
                 "<td class='order-item-sale-price'>" + s_price + "</td>" +
-                "<td style='width:20%'><input class='order-item-quantity-input' name='order[order_products_attributes][][quantity]' id='quantity' type='text' value='1' style='width:30%' ></td>" +
+                "<td style='width:20%'><input class='order-item-quantity-input' name='order[order_products_attributes][][quantity]' id='quantity' type='text' value='1' style='width:85%' ></td>" +
                 "<td class='order-item-total'>" + tot + "</td>" +
                 "<td><a href='#' class='remove_item' ><span class='fa fa-close'></span></a></td>" +
                 "</tr>";
@@ -100,26 +100,26 @@ function calculateTotalPriceofItem(orderItemTR) {
 function calculateGrossAmountTotal() {
     var gross_total = 0;
     $("#added_products > tbody > tr").each(function( i ) {
-        gross_total = gross_total + parseFloat($(this).find('td.order-item-total').text());
-        $('#gross_amount').text(gross_total);
+        gross_total = parseFloat(gross_total) + parseFloat($(this).find('td.order-item-total').text());
+        parseFloat($('#gross_amount').text(gross_total)).toFixed(2);
     });
     if($("#added_products > tbody > tr").length == 0){
-        $('#gross_amount').text(0);
+        parseFloat($('#gross_amount').text(0)).toFixed(2);
     }
     calculateNetAmount();
 }
 
 function calculateNetAmount() {
-    var gross_amount   = $('#gross_amount').text().toFixed(2);
-    var disc_percentage= parseFloat($('#discount_percentage').val()) || 0;
-    var disc_total     = (gross_amount * disc_percentage) / 100;
-    var net_amount     = gross_amount - disc_total;
-    $('#discount_amount').text(disc_total);
-    $('#total_amount').text(net_amount);
-    $('#net_amount').text(net_amount);
+    var gross_amount   = parseFloat($('#gross_amount').text()).toFixed(2);
+    var disc_percentage= parseFloat($('#discount_percentage').val()).toFixed(2) || 0;
+    var disc_total     = parseFloat((gross_amount * disc_percentage) / 100).toFixed(2);
+    var net_amount     = parseFloat(gross_amount - disc_total).toFixed(2);
+    parseFloat($('#discount_amount').text(disc_total)).toFixed(2);
+    parseFloat($('#total_amount').text(net_amount)).toFixed(2);
+    parseFloat($('#net_amount').text(net_amount)).toFixed(2);
 
-    $('#gross_amount1').text(gross_amount);
-    $('#discount_percentage1').text(disc_percentage);
-    $('#discount_amount1').text(disc_total);
-    $('#net_amount1').text(net_amount);
+    parseFloat($('#gross_amount1').text(gross_amount)).toFixed(2);
+    parseFloat($('#discount_percentage1').text(disc_percentage)).toFixed(2);
+    parseFloat($('#discount_amount1').text(disc_total)).toFixed(2);
+    parseFloat($('#net_amount1').text(net_amount)).toFixed(2);
 }

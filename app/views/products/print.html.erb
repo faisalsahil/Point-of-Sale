@@ -1,5 +1,5 @@
 <div id = "printableArea" >
-<%= image_tag "barcodes/#{@product.barcode}.png" ,width: 85,height: 85  %>
+<%= cl_image_tag("#{@product.avatar}", :alt => "Sample Image")  %>
 </div>
 
 <input type="button" onclick="printDiv('#printableArea')" value="Print barcode", class = "btn btn-primary", action = "" />

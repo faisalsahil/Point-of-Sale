@@ -71,6 +71,12 @@ gem 'sidekiq-status'
 
 gem 'slim'
 
+gem 'carrierwave'
+
+gem 'cloudinary'
+
+gem 'mini_magick'
+
 gem 'pg'
 
 gem 'gon'

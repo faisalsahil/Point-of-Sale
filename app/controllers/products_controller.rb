@@ -22,7 +22,7 @@ class ProductsController < ApplicationController
   def new
     @product = Product.new
     @purchase_orders = PurchaseOrder.all
-    # respond_with(@product, @product_natures)
+
   end
 
   def edit
@@ -31,14 +31,23 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
-    # barcode = SecureRandom.hex(10).upcase
-    # barcode = 'TG22499'
 
-    # barcode = @product.product_name
-    # @product.barcode = barcode
+      barcodeName = @product.product_name
+      @product.barcode = barcodeName
+
+      barcode1 =  Barby::Code128B.new(barcodeName)
+
+      File.open( "app/assets/images/barcodes/#{barcodeName}.png", 'w'){|f|
+        f.write barcode1.to_png(:height => 20, :margin => 5)
+      }
+
+      @product.avatar = "#{barcodeName}.png"
+
+      Cloudinary::Uploader.upload("app/assets/images/barcodes/#{barcodeName}.png", :public_id => "#{barcodeName}")
 
       if @product.save
-        # binding.pry
+        File.delete("app/assets/images/barcodes/#{barcodeName}.png")
+
         if params[:purchase_order].present?
           purchase_order = PurchaseOrder.new
           purchase_order.name = params[:purchase_order]
@@ -48,22 +57,11 @@ class ProductsController < ApplicationController
         else
           redirect_to "/purchase_orders/#{params[:product][:purchase_order_id]}/purchase_order_products/add?product_ids=#{@product.id}&purchase_order_id=#{params[:product][:purchase_order_id]}&quantities=#{0}"
         end
-
-        # redirect_to products_path
       end
+  end
 
-    # if @product.save
+  def print
 
-      # barcode1 =  Barby::Code128B.new(barcode)
-      # name = @product.product_name
-      # File.open( "app/assets/images/barcodes/#{name}.png", 'w'){|f|
-      #   f.write barcode1.to_png(:height => 24, :margin => 5)
-      # }
-      #  File.print( name+".png",'w')
-      # render js: "alert('Hello Rails');"
-    #   respond_with(@product)
-    #
-    # end
   end
 
   def update
