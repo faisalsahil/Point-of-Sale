@@ -48,11 +48,16 @@ class ProductsController < ApplicationController
         File.delete("app/assets/images/#{barcodeName}.png") if File.exist?("app/assets/images/#{barcodeName}.png")
 
         if params[:purchase_order].present?
-          purchase_order = PurchaseOrder.new
-          purchase_order.name = params[:purchase_order]
-          purchase_order.save
+          purchase_order = PurchaseOrder.find_by(name: params[:purchase_order])
+          if purchase_order.present?
+            redirect_to "/purchase_orders/#{purchase_order.id}/purchase_order_products/add?product_ids=#{@product.id}&purchase_order_id=#{purchase_order.id}&quantities=#{0}"
+          else
+            purchase_order = PurchaseOrder.new
+            purchase_order.name = params[:purchase_order]
+            purchase_order.save
 
-          redirect_to "/purchase_orders/#{purchase_order.id}/purchase_order_products/add?product_ids=#{@product.id}&purchase_order_id=#{purchase_order.id}&quantities=#{0}"
+            redirect_to "/purchase_orders/#{purchase_order.id}/purchase_order_products/add?product_ids=#{@product.id}&purchase_order_id=#{purchase_order.id}&quantities=#{0}"
+          end
         else
           redirect_to "/purchase_orders/#{params[:product][:purchase_order_id]}/purchase_order_products/add?product_ids=#{@product.id}&purchase_order_id=#{params[:product][:purchase_order_id]}&quantities=#{0}"
         end

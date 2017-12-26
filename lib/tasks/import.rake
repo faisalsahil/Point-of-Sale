@@ -25,13 +25,12 @@ task import_items: :environment do
       f.write barcode1.to_png(:height => 20, :width => 20,  :margin => 5)
     }
 
-  # binding.pry
     cloud_barcode_name = Cloudinary::Uploader.upload("app/assets/images/#{barcodeName}.png")
     product.avatar = "#{cloud_barcode_name["public_id"]}.png"
+    product.save!
 
     File.delete("app/assets/images/#{barcodeName}.png") if File.exist?("app/assets/images/#{barcodeName}.png")
 
-    product.save!
 
     puts "###########################"
     puts "XXXXXXXXXXXXXXXXXXXXXXXXXXX"
