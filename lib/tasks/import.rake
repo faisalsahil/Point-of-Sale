@@ -5,14 +5,14 @@ require 'barby/barcode/code_128'
 require 'barby/outputter/ascii_outputter'
 
 task import_items: :environment do
-  csv_text = File.read('item.csv')
+  csv_text = File.read('items.csv')
   csv = CSV.parse(csv_text, :headers => true)
   csv.each do |row|
     product                = Product.new
     product.product_name   = row['name']
     product.quantity       = row['quantity']
-    product.purchase_price = row['price']
-    product.sale_price     = row['price']
+    product.purchase_price = ((row['price'].to_i)/100)
+    product.sale_price     = ((row['price'].to_i)/100)
     product.expiry_date    = row['expiry_date']
 
     barcodeName = row['name']
