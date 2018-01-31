@@ -11,8 +11,8 @@ task import_items: :environment do
     product                = Product.new
     product.product_name   = row['name']
     product.quantity       = row['quantity']
-    product.purchase_price = ((row['price'].to_i)/100)
-    product.sale_price     = ((row['price'].to_i)/100)
+    product.purchase_price = ((row['price_cents'].to_i)/100)
+    product.sale_price     = ((row['price_cents'].to_i)/100)
     product.expiry_date    = row['expiry_date']
 
     barcodeName = row['name']
