@@ -38,7 +38,7 @@ class ProductsController < ApplicationController
       barcode1 =  Barby::Code128B.new(barcodeName)
 
       File.open( "app/assets/images/#{barcodeName}.png", 'w'){|f|
-        f.write barcode1.to_png(:height => 20, :width => 20, :margin => 5)
+        f.write barcode1.to_png
       }
 
       cloud_barcode_name = Cloudinary::Uploader.upload("app/assets/images/#{barcodeName}.png")

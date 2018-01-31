@@ -17,7 +17,6 @@ task import_items: :environment do
 
     barcodeName = row['name']
     puts barcodeName.class
-
     product.barcode = barcodeName
     barcode1 =  Barby::Code128B.new(barcodeName)
 
