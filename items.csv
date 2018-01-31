@@ -1,4 +1,4 @@
-id,name,sku,quantity,price+AF8-cents,expiry+AF8-date
+id,name,sku,quantity,price_cents,expiry_date
 44,UNIVERSAL SOFT COLLAR LARGE,441,1,30000,2023+AC0-05+AC0-05
 45,AUGMENTIN 156.25 MG SYRUP,49,3,10650,2019+AC0-11+AC0-17
 46,AUGMENTIN BD TABLET,14,14,2985,2019+AC0-10+AC0-13
