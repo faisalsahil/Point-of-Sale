@@ -11,9 +11,10 @@ task import_items: :environment do
     product                = Product.new
     product.product_name   = row['name']
     product.quantity       = row['quantity']
-    product.purchase_price = ((row['price_cents'].to_i)/100)
-    product.sale_price     = ((row['price_cents'].to_i)/100)
+    product.purchase_price = ((Float(row['price_cents']))/100)
+    product.sale_price     = ((Float(row['price_cents']))/100)
     product.expiry_date    = row['expiry_date']
+
 
     barcodeName = row['name']
     puts barcodeName.class
@@ -26,6 +27,7 @@ task import_items: :environment do
 
     cloud_barcode_name = Cloudinary::Uploader.upload("app/assets/images/#{barcodeName}.png")
     product.avatar = "#{cloud_barcode_name["public_id"]}.png"
+
     product.save!
 
     File.delete("app/assets/images/#{barcodeName}.png") if File.exist?("app/assets/images/#{barcodeName}.png")
