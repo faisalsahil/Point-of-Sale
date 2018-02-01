@@ -33,20 +33,20 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
 
-      # barcodeName = @product.product_name
-      # @product.barcode = barcodeName
-      #
-      # barcode1 =  Barby::Code128B.new(barcodeName)
-      #
-      # File.open( "app/assets/images/#{barcodeName}.png", 'w'){|f|
-      #   f.write barcode1.to_png
-      # }
-      #
-      # cloud_barcode_name = Cloudinary::Uploader.upload("app/assets/images/#{barcodeName}.png")
-      # @product.avatar = "#{cloud_barcode_name["public_id"]}.png"
+      barcodeName = @product.product_name
+      @product.barcode = barcodeName
+
+      barcode1 =  Barby::Code128B.new(barcodeName)
+
+      File.open( "app/assets/images/#{barcodeName}.png", 'w'){|f|
+        f.write barcode1.to_png
+      }
+
+      cloud_barcode_name = Cloudinary::Uploader.upload("app/assets/images/#{barcodeName}.png")
+      @product.avatar = "#{cloud_barcode_name["public_id"]}.png"
 
       if @product.save
-        # File.delete("app/assets/images/#{barcodeName}.png") if File.exist?("app/assets/images/#{barcodeName}.png")
+        File.delete("app/assets/images/#{barcodeName}.png") if File.exist?("app/assets/images/#{barcodeName}.png")
 
         if params[:purchase_order].present?
           purchase_order = PurchaseOrder.find_by(name: params[:purchase_order])
@@ -70,7 +70,11 @@ class ProductsController < ApplicationController
   end
 
   def update
+    existing_quantity = @product.quantity
     @product.update(product_params)
+    @product.quantity = @product.quantity +  existing_quantity
+    @product.save
+
     respond_with(@product)
   end
 
