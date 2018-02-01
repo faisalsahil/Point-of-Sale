@@ -19,13 +19,14 @@
       <th>Sale price</th>
       <th>Quantity</th>
       <th>Actions</th>
+      <th>Comapny</th>
     </tr>
   </thead>
 
   <tbody>
     <% @products.each do |product| %>
       <tr>
-        <td><%= product.product_name %></td>
+        <td><%= "#{product.product_name}" %></td>
         <td><%= product.purchase_price %></td>
         <td><%= product.sale_price %></td>
         <td><%= product.quantity %></td>
@@ -35,7 +36,9 @@
               <%= link_to '', edit_product_path(product), class: 'fa fa-edit' %>
               <%= link_to '', print_product_path(product), class: 'fa fa-download' %>
           <% end %>
-          <%#= link_to '', product, method: :delete, data: { confirm: 'Are you sure?' }, class: 'fa fa-trash' %>
+        </td>
+        <td>
+          <%= select_tag(:purchase_order_id, options_for_select(@purchase_orders.collect{ |u| [u.name, u.id] }), class: 'purchase_order_id', prompt: 'Select Purchase Order', product_id: product.id, quantity: product.quantity)%>
         </td>
       </tr>
     <% end %>

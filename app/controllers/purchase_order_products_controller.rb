@@ -63,39 +63,38 @@ class PurchaseOrderProductsController < ApplicationController
 
    end
   def add
+
     product_ids = params[:product_ids]
     quantities  = params[:quantities]
     quantity = quantities.split(",")
     i=0
     product_ids.split(",").each do |product_id|
- #   while    product_ids !=nil
-    products = Product.where(id: product_id)
-#   products =Product.find_by_id(params[:product_id])
 
 
-    @purchase_order = PurchaseOrder.find_by_id(params[:purchase_order_id])
-    products.each do |product, index|
-#   producs.each_with_index do |product, index|
-      purchase_order_product = PurchaseOrderProduct.where("purchase_order_id = ? AND product_id = ?", params[:purchase_order_id], product.id)
-      if purchase_order_product.blank?
-        @purchase_order_product                   = @purchase_order.purchase_order_products.build
-        @purchase_order_product.name              = product.product_name
-        @purchase_order_product.product_id        = product.id
-        @purchase_order_product.current_stock     = product.try(:quantity)
-        @purchase_order_product.purchase_quantity = quantity[i]
-        if @purchase_order_product.save
-          # redirect_to purchase_item_list_items_path(@purchase_item)
-          flash[:success] = 'successfully added to purchase order.'
+      products = Product.where(id: product_id)
+
+      @purchase_order = PurchaseOrder.find_by_id(params[:purchase_order_id])
+      products.each do |product, index|
+
+        purchase_order_product = PurchaseOrderProduct.where("purchase_order_id = ? AND product_id = ?", params[:purchase_order_id], product.id)
+        if purchase_order_product.blank?
+          @purchase_order_product                   = @purchase_order.purchase_order_products.build
+          @purchase_order_product.name              = product.product_name
+          @purchase_order_product.product_id        = product.id
+          @purchase_order_product.current_stock     = product.try(:quantity)
+          @purchase_order_product.purchase_quantity = quantity[i]
+          if @purchase_order_product.save
+            flash[:success] = 'successfully added to purchase order.'
+          end
+        else
+
+          @purchase_order_product = @purchase_order.purchase_order_products.find_by_id(purchase_order_product)
+          @purchase_order_product.purchase_quantity = @purchase_order_product.purchase_quantity + quantity[i].to_i;
+          @purchase_order_product.save
         end
-      else
-        @purchase_order_product = @purchase_order.purchase_order_products.find_by_id(purchase_order_product)
-        @purchase_order_product.purchase_quantity = @purchase_order_product.purchase_quantity + quantity[i].to_i;
-        @purchase_order_product.save
+        i = i + 1
+
       end
-      i = i + 1
-
-    end
-
     end
 
     redirect_to purchase_order_path(@purchase_order)

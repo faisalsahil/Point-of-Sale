@@ -3,17 +3,22 @@
 
 <div class="row">
   <!--<div class="col-md-6">-->
-    <!--<%= form_tag reminders_path, method: 'get' do %>-->
-        <!--<%= text_field_tag :keyword, params[:keyword], autofocus: true %>-->
-        <!--<%= submit_tag 'search', name: nil, style: 'width:70px;' %>-->
-    <!--<% end %>-->
+    <!--<%#= form_tag reminders_path, method: 'get' do %>-->
+        <!--<%#= text_field_tag :keyword, params[:keyword], autofocus: true %>-->
+        <!--<%#= submit_tag 'search', name: nil, style: 'width:70px;' %>-->
+    <!--<%# end %>-->
   <!--</div>-->
 
   <div class="col-md-6 pull-right">
     <div style="text-align: right">
-      Select Purchase
-      File: <%= select_tag 'purchase_file', options_from_collection_for_select(@purchase_orders, 'id', 'name') %>
-      <%= link_to 'Add to List', 'javascript:void(0)', id: 'add_items_to_list', class: 'btn btn-mini btn-style' %>
+      <% if @purchase_orders.present? %>
+          Select Purchase
+          File: <%= select_tag 'purchase_file', options_from_collection_for_select(@purchase_orders, 'id', 'name') %>
+          <%= link_to 'Add to List', 'javascript:void(0)', id: 'add_items_to_list', class: 'btn btn-mini btn-style' %>
+      <% else %>
+          <%= link_to 'New Purchase order', new_purchase_order_path , class: 'btn btn-mini btn-style pull-right', style: 'margin-top:2%;' %>
+      <% end %>
+
     </div>
   </div>
 
