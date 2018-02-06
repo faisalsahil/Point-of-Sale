@@ -15,10 +15,11 @@
   #table-discount{display: block!important; margin-left: 15px;}
   footer{display: none;}
   @page {
-    size: 5in 7in;/* landscape */
-    font-size: 10px;
-    /*width: 4in;*/
-    /*height: auto;*/
+    /*size: 5in 7in;!* landscape *!*/
+    /*font-size: 30px;*/
+    width: 5.8in;
+    height: 100%;
+    margin-right: 5.21in;
     /* you can also specify margins here: */
     /*margin: 25mm;*/ /* for compatibility with both A4 and Letter */
   }
@@ -31,7 +32,10 @@
   </div>
 </div>
 
-
+<pre id="sale_h5" class="pull-right">
+  <strong><%= "Order#: #{@order_number}" %></strong>
+  <strong><%= "Date:  #{Date.today.strftime('%d/%m/%Y')}" %></strong>
+</pre>
 
 <div class="row">
   <%= form_for(@order) do |f| %>
@@ -90,10 +94,6 @@
       <div id="table-values" style="width:30%; float:right">
         <!--<br class="col-md-4">-->
         <!--<br class="col-md-12">-->
-        <pre id="sale_h5" class="pull-right">
-          <strong><%= "Order#: #{@order_number}" %></strong>
-          <strong><%= "Date:  #{Date.today.strftime('%d/%m/%Y')}" %></strong>
-        </pre>
 
         <table class="table table-striped "  style="font-size:84px" >
 

@@ -33,20 +33,20 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
 
-      barcodeName = @product.product_name
-      @product.barcode = barcodeName
-
-      barcode1 =  Barby::Code128B.new(barcodeName)
-
-      File.open( "app/assets/images/#{barcodeName}.png", 'w'){|f|
-        f.write barcode1.to_png
-      }
-
-      cloud_barcode_name = Cloudinary::Uploader.upload("app/assets/images/#{barcodeName}.png")
-      @product.avatar = "#{cloud_barcode_name["public_id"]}.png"
+      # barcodeName = @product.product_name
+      # @product.barcode = barcodeName
+      #
+      # barcode1 =  Barby::Code128B.new(barcodeName)
+      #
+      # File.open( "app/assets/images/#{barcodeName}.png", 'w'){|f|
+      #   f.write barcode1.to_png
+      # }
+      #
+      # cloud_barcode_name = Cloudinary::Uploader.upload("app/assets/images/#{barcodeName}.png")
+      # @product.avatar = "#{cloud_barcode_name["public_id"]}.png"
 
       if @product.save
-        File.delete("app/assets/images/#{barcodeName}.png") if File.exist?("app/assets/images/#{barcodeName}.png")
+        # File.delete("app/assets/images/#{barcodeName}.png") if File.exist?("app/assets/images/#{barcodeName}.png")
 
         if params[:purchase_order].present?
           purchase_order = PurchaseOrder.find_by(name: params[:purchase_order])
@@ -59,9 +59,12 @@ class ProductsController < ApplicationController
 
             redirect_to "/purchase_orders/#{purchase_order.id}/purchase_order_products/add?product_ids=#{@product.id}&purchase_order_id=#{purchase_order.id}&quantities=#{0}"
           end
-        else
+        elsif params[:purchase_order_id].present?
           redirect_to "/purchase_orders/#{params[:product][:purchase_order_id]}/purchase_order_products/add?product_ids=#{@product.id}&purchase_order_id=#{params[:product][:purchase_order_id]}&quantities=#{0}"
+        else
+          redirect_to products_path
         end
+
       end
   end
 
