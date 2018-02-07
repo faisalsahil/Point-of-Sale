@@ -27,6 +27,10 @@
           <div class="field">
             <%= f.label :quantity %><br>
             <%= f.number_field :quantity %>
+            <% if not @product.new_record?%>
+              <%= f.check_box("update_quantity", :checked => false) %>
+              <%= f.label :update_quantity %><br>
+            <% end %>
           </div>
         </div>
         <div class="col-md-6">

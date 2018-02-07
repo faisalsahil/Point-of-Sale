@@ -1,5 +1,10 @@
 $(document).ready(function() {
 
+    // $( document ).on( 'keydown', function ( e ) {
+    //     if ( e.keyCode === 27 ) { //ESC key code
+    //         alert("Hello world");
+    //     }
+    // });
 
 
     $("#chosen-select").select2({

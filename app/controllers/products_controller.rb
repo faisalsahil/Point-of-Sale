@@ -75,7 +75,10 @@ class ProductsController < ApplicationController
   def update
     existing_quantity = @product.quantity
     @product.update(product_params)
-    @product.quantity = @product.quantity +  existing_quantity
+    # binding.pry
+    if params[:product][:update_quantity] == "1"
+      @product.quantity = @product.quantity +  existing_quantity
+    end
     @product.save
 
     respond_with(@product)
