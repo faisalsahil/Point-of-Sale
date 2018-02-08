@@ -1,11 +1,20 @@
 $(document).ready(function() {
 
-    // $( document ).on( 'keydown', function ( e ) {
-    //     if ( e.keyCode === 27 ) { //ESC key code
-    //         alert("Hello world");
+
+    // $("#chosen-select").on('keydown',function(e) {
+    //     // alert("Hwllo");
+    //     if(e.keyCode === 17) {
+    //         // $('#myform').submit();
+    //         alert("Hello World");
+    //         // or your stuff here...
     //     }
     // });
-
+    //
+    // $("#discount_percentage").on('keydown', function ( e ) {
+    //     if ( e.keyCode === 17) { //Shift key code
+    //         $("#chosen-select").focus();
+    //     }
+    // });
 
     $("#chosen-select").select2({
         theme: "bootstrap"

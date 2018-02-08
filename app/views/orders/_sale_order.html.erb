@@ -56,7 +56,7 @@
 
           <div id="selector-div" class="col-md-6" style="margin-bottom:10px;">
             <% if @products.present? %>
-                Search Products:<%=  select_tag "products", options_for_select(@products.try(:collect) { |u| [u.product_name , "#{u.id}:#{u.product_name}:#{u.sale_price.to_s}: #{u.quantity}:#{u.purchase_price}"]}), {:id =>"chosen-select",:style=>'width:250px;',class: 'asdasd',  multiple: 'multiple'} %>
+                Search Products:<%=  select_tag "products", options_for_select(@products.try(:collect) { |u| [u.product_name , "#{u.id}:#{u.product_name}:#{u.sale_price.to_s}: #{u.quantity}:#{u.purchase_price}"]}), {:id =>"chosen-select",:style=>'width:250px;',class: 'choose',  multiple: 'multiple'} %>
                 <%= f.hidden_field :order_id, :value => @order_number %>
             <% end %>
           </div>
