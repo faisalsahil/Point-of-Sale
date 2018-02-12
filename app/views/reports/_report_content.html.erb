@@ -26,7 +26,7 @@
             <tr>
               <td><%= index + 1 %></td>
               <td><%= order_product.product_name %></td>
-              <td><%= order_product.order_id %></td>
+              <td><%= order_product.try(:order).try(:order_id) %></td>
               <td><%= order_product.quantity %></td>
               <td><%= order_product.product_stock %></td>
               <td><%= order_product.purchase_price %></td>

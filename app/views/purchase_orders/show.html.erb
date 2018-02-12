@@ -26,7 +26,7 @@
   <% @purchase_order_products.each do |purchase_order_product| %>
       <tr>
         <td><%= purchase_order_product.name %></td>
-        <td><%= purchase_order_product.current_stock %></td>
+        <td><%= purchase_order_product.try(:product).try(:quantity) %></td>
         <td>
           <%= purchase_order_product.purchase_quantity %>
           <!--<%# if not @purchase_order.is_completed %>-->

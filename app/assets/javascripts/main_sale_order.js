@@ -9,6 +9,11 @@ $(document).ready(function() {
     //         // or your stuff here...
     //     }
     // });
+
+
+    // $("#chosen-select").on("keypress", function (evt){
+    //     alert("Ssss");
+    // });
     //
     // $("#discount_percentage").on('keydown', function ( e ) {
     //     if ( e.keyCode === 17) { //Shift key code
