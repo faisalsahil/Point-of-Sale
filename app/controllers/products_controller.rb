@@ -11,7 +11,7 @@ class ProductsController < ApplicationController
   respond_to :html, :js
 
   def index
-    @products = Product.all
+    @products = Product.select(:id, :product_name, :quantity, :purchase_price, :sale_price)
     @purchase_orders = PurchaseOrder.all
     respond_with(@products)
   end
