@@ -97,7 +97,7 @@ class PurchaseOrderProductsController < ApplicationController
       end
     end
 
-    redirect_to purchase_order_path(@purchase_order)
+    redirect_to :back
     end
 
   def update_products
