@@ -6,24 +6,21 @@ class ProductsController < ApplicationController
    require 'barby/barcode/code_128'
    require 'barby/outputter/ascii_outputter'
 
-  before_action :set_product, only: [:show, :edit, :update, :destroy,:print]
+  before_action :set_product, only: [:show, :edit, :update, :destroy,:print, :update_editable]
 
   respond_to :html, :js
 
   def index
     @products = Product.select(:id, :product_name, :quantity, :purchase_price, :sale_price)
     @purchase_orders = PurchaseOrder.all
-    respond_with(@products)
   end
 
   def show
-    respond_with(@product)
   end
 
   def new
     @product = Product.new
     @purchase_orders = PurchaseOrder.all
-
   end
 
   def edit
@@ -79,14 +76,19 @@ class ProductsController < ApplicationController
     if params[:product][:update_quantity] == "1"
       @product.quantity = @product.quantity +  existing_quantity
     end
-    @product.save
 
-    respond_with(@product)
+    if @product.save
+      redirect_to new_product_path
+    end
+  end
+
+  def update_editable
+    @product.quantity = params[:value]
+    @product.save
   end
 
   def destroy
      @product.destroy
-    respond_with(@product)
   end
   
   def download

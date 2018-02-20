@@ -35,9 +35,13 @@
         </div>
         <div class="col-md-6">
           <div class="field">
-            <% if not @product.new_record?%>
+            <% if not @product.new_record? %>
                 <%= f.label :expiry_date %><br>
-                <%= f.text_field :expiry_date, class: "datepicker", value: @product.expiry_date.strftime("%d/%m/%Y") %>
+              <% if not @product.expiry_date.blank? %>
+                <%= f.text_field :expiry_date, class: "datepicker", value: @product.try(:expiry_date).strftime("%d/%m/%Y") %>
+              <% else %>
+                <%= f.text_field :expiry_date, class: "datepicker" %>
+              <% end %>
             <% else %>
                 <%= f.label :expiry_date %><br>
                 <%= f.text_field :expiry_date, class: "datepicker" %>

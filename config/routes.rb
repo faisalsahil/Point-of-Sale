@@ -51,6 +51,7 @@ PosRetail::Application.routes.draw do
     end
     member do
       get :print
+      put :update_editable
     end
   end
   resources :orders do

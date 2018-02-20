@@ -1,25 +1,39 @@
 $(document).ready(function() {
 
-
-    // $("#chosen-select").on('keydown',function(e) {
-    //     // alert("Hwllo");
-    //     if(e.keyCode === 17) {
-    //         // $('#myform').submit();
-    //         alert("Hello World");
-    //         // or your stuff here...
-    //     }
-    // });
-
-
-    // $("#chosen-select").on("keypress", function (evt){
-    //     alert("Ssss");
-    // });
+    // (function ($) {
+    //     "use strict";
     //
-    // $("#discount_percentage").on('keydown', function ( e ) {
-    //     if ( e.keyCode === 17) { //Shift key code
-    //         $("#chosen-select").focus();
-    //     }
-    // });
+    //     var Address = function (options) {
+    //         this.init('editable', options, Address.defaults);
+    //     };
+    //
+    //     $.fn.editableutils.inherit(Address, $.fn.editabletypes.abstractinput);
+    //
+    //     $.extend(Address.prototype, {
+    //         render: function () {
+    //             this.$input = this.$tpl.find('input');
+    //         },
+    //         activate: function () {
+    //             this.$input.filter('[name="status"]').focus();
+    //         }
+    //     });
+    //
+    //     Address.defaults = $.extend({}, $.fn.editabletypes.abstractinput.defaults, {
+    //         tpl: '<div class="editable-s"><label><span>Status: </span><input type="text" name="status" class="input-medium"></label></div>' +
+    //         '<div class="editable-s"><label><span>Reason: </span><textarea rows="3" name="reason" class="input-medium"></textarea></label></div>',
+    //
+    //         inputclass: ''
+    //     });
+    //
+    //     $.fn.editabletypes.address = Address;
+    //
+    // }(window.jQuery));
+
+    $('.editable').editable({
+        ajaxOptions: {
+            type: 'put'
+        }
+    });
 
     $("#chosen-select").select2({
         theme: "bootstrap"

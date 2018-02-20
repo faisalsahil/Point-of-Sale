@@ -29,7 +29,11 @@
         <td><%= "#{product.product_name}" %></td>
         <td><%= product.purchase_price %></td>
         <td><%= product.sale_price %></td>
-        <td><%= product.quantity %></td>
+        <td>
+          <!--<a href="#" class="editable" data-name="quantity" data-type="text" data-pk="<%= product.id %>" data-url="<%= update_editable_product_path(product.id) %>" data-title="Enter Quantity">-->
+            <%= product.quantity %>
+          <!--</a>-->
+        </td>
         <td>
           <%= link_to '', product, class: 'fa fa-eye' %>
           <% if @current_user_role == AppConstants::ADMIN %>

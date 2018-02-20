@@ -17,6 +17,8 @@ gem 'bcrypt'
 
 gem 'devise'
 
+gem 'bootstrap-editable-rails'
+
 gem 'dotenv-rails'
 
 gem 'erb2haml'
@@ -24,6 +26,8 @@ gem 'erb2haml'
 gem 'escpos'
 
 gem 'escpos-image'
+
+gem 'coffee-rails'
 
 gem 'mini_magick'
 
@@ -75,7 +79,6 @@ gem 'carrierwave'
 
 gem 'cloudinary'
 
-gem 'mini_magick'
 
 gem 'pg'
 

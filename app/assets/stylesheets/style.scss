@@ -301,3 +301,7 @@ input[type="text"], input[type="password"], textarea, select {
       overflow-y: auto;
   }
 }
+
+.editable-click, a.editable-click, a.editable-click:hover {
+  background-color: white!important;
+}
