@@ -25,24 +25,24 @@
             %>
             <tr>
               <td><%= index + 1 %></td>
-              <td><%= order_product.product_name %></td>
+              <td><%= order_product.try(:product_name) %></td>
               <td><%= order_product.try(:order).try(:order_id) %></td>
-              <td><%= order_product.quantity %></td>
-              <td><%= order_product.product_stock %></td>
-              <td><%= order_product.purchase_price %></td>
-              <td><%= order_product.unit_cost %></td>
+              <td><%= order_product.try(:quantity) %></td>
+              <td><%= order_product.try(:product_stock) %></td>
+              <td><%= order_product.(:purchase_price) %></td>
+              <td><%= order_product.try(:unit_cost) %></td>
               <td>
-                <% price       = order_product.quantity*order_product.unit_cost
+                <% price       = order_product.try(:quantity)*order_product.try(:unit_cost)
                    total_price = total_price+price
                 %>
-                <% purchase_price       = order_product.quantity*order_product.purchase_price
+                <% purchase_price       = order_product.try(:quantity)*order_product.try(:purchase_price)
                    purchase_price_total = purchase_price_total+purchase_price
                 %>
                 <%= price %>
               </td>
-              <td><%= order.discount %></td>
+              <td><%= order.try(:discount) %></td>
 
-              <% discounted_price = discounted_price + (price - (price*order.discount)/100) %>
+              <% discounted_price = discounted_price + (price - (price*order.try(:discount))/100) %>
             </tr>
           <% end %>
           <tr>

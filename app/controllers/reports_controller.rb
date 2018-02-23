@@ -12,7 +12,7 @@ class ReportsController < ApplicationController
     elsif params[:to_date].present?
       @order_products = OrderProduct.where('DATE(created_at) <= ?', params[:to_date].to_date)
     else
-        @order_products =OrderProduct.where("DATE(created_at) = ?",Date.today)
+      @order_products =OrderProduct.where("DATE(created_at) = ?",Date.today)
     end
     respond_to do |format|
       format.html{}
