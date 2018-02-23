@@ -21,7 +21,7 @@
           <% purchase_price_total = 0 %>
 
           <% @order_products.each_with_index do |order_product, index|  %>
-            <% order   = order_product.order
+            <% order   = order_product.try(:order)
             %>
             <tr>
               <td><%= index + 1 %></td>
@@ -42,7 +42,7 @@
               </td>
               <td><%= order.try(:discount) %></td>
 
-              <% discounted_price = discounted_price + (price - (price*order.try(:discount))/100) %>
+              <%# discounted_price = discounted_price + (price - (price*order.try(:discount))/100) %>
             </tr>
           <% end %>
           <tr>
@@ -63,7 +63,7 @@
             <td></td>
             <td></td>
             <td> Discounted Price :</td>
-            <td><%= discounted_price.round(2) %></td>
+            <td><%#= discounted_price.round(2) %></td>
           </tr>
 
           <tr>
@@ -74,7 +74,7 @@
             <td></td>
             <td></td>
             <td> Profit :</td>
-            <td><%= (discounted_price - purchase_price_total).round(2) %></td>
+            <td><%#= (discounted_price - purchase_price_total).round(2) %></td>
           </tr>
 
         </tbody>
