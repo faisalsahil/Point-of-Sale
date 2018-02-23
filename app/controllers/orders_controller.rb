@@ -75,7 +75,8 @@ class OrdersController < ApplicationController
       redirect_to sale_order_orders_path
 
     else
-      flash[:failure] = 'sorry'
+      redirect_to sale_order_orders_path
+      flash[:failure] = 'Discount needs to be Filled or by Default 0'
     end
   end
 

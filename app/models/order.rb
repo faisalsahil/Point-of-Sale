@@ -4,6 +4,7 @@ class Order < ActiveRecord::Base
   has_many :products, through: :order_products
 
   validates :order_id, uniqueness: true
+  validates :discount, presence: true
   before_create :set_order_number
 
   belongs_to :product
