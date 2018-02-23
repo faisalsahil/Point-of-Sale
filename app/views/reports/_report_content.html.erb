@@ -29,7 +29,7 @@
               <td><%= order_product.try(:order).try(:order_id) %></td>
               <td><%= order_product.try(:quantity) %></td>
               <td><%= order_product.try(:product_stock) %></td>
-              <td><%= order_product.(:purchase_price) %></td>
+              <td><%= order_product.try(:purchase_price) %></td>
               <td><%= order_product.try(:unit_cost) %></td>
               <td>
                 <% price       = order_product.try(:quantity)*order_product.try(:unit_cost)
