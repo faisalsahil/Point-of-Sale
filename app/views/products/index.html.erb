@@ -30,9 +30,9 @@
         <td><%= product.purchase_price %></td>
         <td><%= product.sale_price %></td>
         <td>
-          <!--<a href="#" class="editable" data-name="quantity" data-type="text" data-pk="<%= product.id %>" data-url="<%= update_editable_product_path(product.id) %>" data-title="Enter Quantity">-->
+          <a href="#" class="editable" data-name="quantity" data-type="text" data-pk="<%= product.id %>" data-url="<%= update_editable_product_path(product.id) %>" data-title="Enter Quantity">
             <%= product.quantity %>
-          <!--</a>-->
+          </a>
         </td>
         <td>
           <%= link_to '', product, class: 'fa fa-eye' %>

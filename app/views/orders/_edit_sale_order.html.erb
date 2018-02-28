@@ -43,7 +43,7 @@
       	    <td>  <%= ((price*quantity)-(((price*quantity)*discount)/100)) %>  </td>
       	    <td>  <%= discount %>  </td>
       	    <td>  <%= quantity %>  </td>
-      	    <td>  <%= link_to 'Destroy', order_product, method: :delete, data: { confirm: 'Are you sure?' } %> </td>
+      	    <td>  <%= link_to 'Destroy', delete_product_orders_path(order_product_id: order_product) %> </td>
       	  </tr>
       	<% end %>
       </tbody>

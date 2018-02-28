@@ -59,6 +59,7 @@ PosRetail::Application.routes.draw do
       get 'purchase_order'
       get 'sale_order'
       get 'sale_report'
+      get 'delete_product'
     end
   end
   resources :order_products, only: [:destroy] do

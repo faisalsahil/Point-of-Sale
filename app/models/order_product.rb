@@ -5,8 +5,6 @@
 
   after_create :update_stock
 
-  before_destroy :add_product
-
   delegate :sale_price, :product_name, to: :product
 
   validates :quantity, presence: true, numericality: { greater_than_or_equal_to: 0 }
@@ -20,11 +18,6 @@
 
     self.product_stock = product.quantity
     self.save
-  end
-
-  def add_product
-     product.quantity += self.quantity
-     product.save
   end
 
   def unit_price
