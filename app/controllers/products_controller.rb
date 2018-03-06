@@ -82,7 +82,12 @@ class ProductsController < ApplicationController
     end
   end
 
-  def update_editable
+  def update_quantity_editable
+    @product.quantity = params[:value]
+    @product.save
+  end
+
+  def update_purchase_price_editable
     @product.quantity = params[:value]
     @product.save
   end
