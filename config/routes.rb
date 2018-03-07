@@ -51,7 +51,10 @@ PosRetail::Application.routes.draw do
     end
     member do
       get :print
-      put :update_editable
+      put :update_quantity_editable
+      put :update_sale_price_editable
+      put :update_purchase_price_editable
+      put :update_expiry_editable
     end
   end
   resources :orders do
@@ -59,6 +62,7 @@ PosRetail::Application.routes.draw do
       get 'purchase_order'
       get 'sale_order'
       get 'sale_report'
+      get 'delete_product'
     end
   end
   resources :order_products, only: [:destroy] do

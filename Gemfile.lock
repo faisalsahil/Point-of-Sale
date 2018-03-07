@@ -221,7 +221,7 @@ GEM
       mini_portile2 (~> 2.3.0)
     numerizer (0.1.1)
     orm_adapter (0.5.0)
-    pg (1.0.0)
+    pg (0.21.0)
     png (1.2.1)
       RubyInline (~> 3.9)
     pry (0.11.3)
@@ -385,7 +385,7 @@ DEPENDENCIES
   jquery-ui-rails
   listen (~> 3.0.5)
   mini_magick
-  pg
+  pg (~> 0.20)
   plutus!
   png
   pry-rails
@@ -411,4 +411,4 @@ DEPENDENCIES
   wkhtmltopdf-binary
 
 BUNDLED WITH
-   1.14.5
+   1.16.1

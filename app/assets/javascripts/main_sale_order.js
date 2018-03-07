@@ -30,8 +30,10 @@ $(document).ready(function() {
     // }(window.jQuery));
 
     $('.editable').editable({
+        placement: 'right',
         ajaxOptions: {
-            type: 'put'
+            type: 'put',
+            DataType: 'json'
         }
     });
 

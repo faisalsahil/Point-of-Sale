@@ -50,14 +50,12 @@ class OrdersController < ApplicationController
                    line: true
                }
       end
-
     end
-
   end
 
   def purchase_order
     @order = Order.new
-    end
+  end
   
   def sale_order
     @order = Order.new
@@ -67,6 +65,15 @@ class OrdersController < ApplicationController
 
   def edit
     @order_products = @order.order_products
+  end
+
+  def delete_product
+    order_product = OrderProduct.find(params[:order_product_id])
+    product = order_product.product
+    product.quantity += order_product.quantity
+    product.save
+    order_product.destroy
+    redirect_to orders_path
   end
 
   def create
@@ -90,7 +97,14 @@ class OrdersController < ApplicationController
   end
 
   def destroy
-    if    @order.destroy
+    order_products = @order.order_products
+    order_products.each do |order_product|
+      product = order_product.product
+      product.quantity += order_product.quantity
+      product.save
+    end
+
+    if  @order.destroy
       redirect_to orders_path
     end
   end

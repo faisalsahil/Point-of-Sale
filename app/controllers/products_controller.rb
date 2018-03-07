@@ -6,12 +6,12 @@ class ProductsController < ApplicationController
    require 'barby/barcode/code_128'
    require 'barby/outputter/ascii_outputter'
 
-  before_action :set_product, only: [:show, :edit, :update, :destroy,:print, :update_editable]
+  before_action :set_product, only: [:show, :edit, :update, :destroy,:print, :update_quantity_editable, :update_sale_price_editable]
 
   respond_to :html, :js
 
   def index
-    @products = Product.select(:id, :product_name, :quantity, :purchase_price, :sale_price)
+    @products = Product.select(:id, :product_name, :quantity, :purchase_price, :sale_price, :expiry_date)
     @purchase_orders = PurchaseOrder.all
   end
 
@@ -85,11 +85,25 @@ class ProductsController < ApplicationController
   def update_quantity_editable
     @product.quantity = params[:value]
     @product.save
+    return render json: true
+  end
+
+  def update_sale_price_editable
+    @product.sale_price = params[:value]
+    @product.save
+    return render json: true
   end
 
   def update_purchase_price_editable
-    @product.quantity = params[:value]
+    @product.purchase_price = params[:value]
     @product.save
+    return render json: true
+  end
+
+  def update_expiry_editable
+    @product.expiry_date = params[:value]
+    @product.save
+    return render json: true
   end
 
   def destroy

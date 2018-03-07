@@ -18,6 +18,7 @@
       <th>Purchase price</th>
       <th>Sale price</th>
       <th>Quantity</th>
+      <th>Expiry date</th>
       <th>Actions</th>
       <th>Comapny</th>
     </tr>
@@ -27,13 +28,36 @@
     <% @products.each do |product| %>
       <tr>
         <td><%= "#{product.product_name}" %></td>
-        <td><%= product.purchase_price %></td>
-        <td><%= product.sale_price %></td>
+
         <td>
-          <!--<a href="#" class="editable" data-name="quantity" data-type="text" data-pk="<%= product.id %>" data-url="<%= update_quantity_editable_product_path(product.id) %>" data-title="Enter Quantity">-->
-            <%= product.quantity %>
-          <!--</a>-->
+          <a href="#" class="editable" data-name="purchase_price" data-type="text" data-pk="<%= product.id %>" data-url="<%= update_purchase_price_editable_product_path(product.id) %>" data-title="Enter Purchase Price">
+            <%= product.try(:purchase_price) %>
+          </a>
         </td>
+
+        <td>
+          <a href="#" class="editable" data-name="sale_price" data-type="text" data-pk="<%= product.id %>" data-url="<%= update_sale_price_editable_product_path(product.id) %>" data-title="Enter Sale Price">
+            <%= product.try(:sale_price) %>
+          </a>
+        </td>
+        <td>
+          <a href="#" class="editable" data-name="quantity" data-type="text" data-pk="<%= product.id %>" data-url="<%= update_quantity_editable_product_path(product.id) %>" data-title="Enter Quantity">
+            <%= product.try(:quantity) %>
+          </a>
+        </td>
+
+        <td>
+          <% if product.expiry_date.present?
+              expiry_date = product.expiry_date.strftime('%d/%m/%Y')
+            else
+              expiry_date = nil
+            end
+          %>
+          <a href="#" class="editable" data-name="expiry_date" data-type="date" data-pk="<%= product.id %>" data-url="<%= update_expiry_editable_product_path(product.id) %>" data-title="Enter Expiry date">
+            <%= expiry_date %>
+          </a>
+        </td>
+
         <td>
           <%= link_to '', product, class: 'fa fa-eye' %>
           <% if @current_user_role == AppConstants::ADMIN %>
