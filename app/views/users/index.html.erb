@@ -8,9 +8,11 @@
         <div class="row well bg-primary">
           <strong>Today Orders </strong><span class="pull-right"><%= @orders %> </span>
         </div>
-        <div class="row well red">
-          <strong>Today Sale </strong><span class="pull-right"><%= "Rs. #{@total_sale_today}" %></span>
-        </div>
+        <% if @current_user_role == AppConstants::ADMIN %>
+          <div class="row well red">
+            <strong>Today Sale </strong><span class="pull-right"><%= "Rs. #{@total_sale_today}" %></span>
+          </div>
+        <% end %>
       </div>
       <div class="col-lg-6 time-details">
         <div id="clock-div">
