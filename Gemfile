@@ -17,6 +17,8 @@ gem 'bcrypt'
 
 gem 'devise'
 
+gem 'mysql2', '< 0.5'
+
 gem 'bootstrap-editable-rails'
 
 gem 'dotenv-rails'
@@ -80,7 +82,7 @@ gem 'carrierwave'
 gem 'cloudinary'
 
 
-gem 'pg', '~> 0.20'
+# gem 'pg', '~> 0.20'
 
 gem 'gon'
 # for pdf generation

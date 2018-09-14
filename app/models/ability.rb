@@ -23,7 +23,7 @@ class Ability
     can       [:create, :sale_order], Order
     can       [:create], OrderProduct
     cannot    [:destroy, :update, :create], Product
-    cannot    [:manage], PurchaseOrder
+    can       [:read], PurchaseOrder 
     cannot    [:manage], PurchaseOrderProduct
 
   end

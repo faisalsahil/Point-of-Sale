@@ -2,23 +2,28 @@
   <strong>Name:</strong>
   <%= (@purchase_order.name).upcase %>
 </h3>
- <div class="pull-right">
-   <%if not @purchase_order.is_completed %>
-     <%= link_to 'Complete Order', complete_order_purchase_order_path(@purchase_order), class: 'btn btn-success', id: "purchase_file" %>
-     <%= link_to 'Add Order', new_purchase_order_purchase_order_product_path(@purchase_order), class: 'btn btn-info', id: 'add_purchase_order_products' %>
-   <% end %>
-    <%#= link_to 'Edit Order',  edit_purchase_order_product_path(@purchase_order), class: 'btn btn-primary pull-right', id: 'update_purchase_order_products' %>
-   <%= link_to 'Generate PDF', purchase_order_path(@purchase_order, {format: :pdf}), class: 'btn btn-warning' %>
- </div>
+ <% if @current_user_role == AppConstants::ADMIN %>
+   <div class="pull-right">
+     <%if not @purchase_order.is_completed %>
+       <%= link_to 'Complete Order', complete_order_purchase_order_path(@purchase_order), class: 'btn btn-success', id: "purchase_file" %>
+       <%= link_to 'Add Order', new_purchase_order_purchase_order_product_path(@purchase_order), class: 'btn btn-info', id: 'add_purchase_order_products' %>
+     <% end %>
+      <%#= link_to 'Edit Order',  edit_purchase_order_product_path(@purchase_order), class: 'btn btn-primary pull-right', id: 'update_purchase_order_products' %>
+     <%= link_to 'Generate PDF', purchase_order_path(@purchase_order, {format: :pdf}), class: 'btn btn-warning' %>
+   </div>
+ <% end %>
 
 <table class="table table-striped list_data_table">
   <thead>
   <th>Product Name</th>
   <th>Current Stock</th>
+  <th>Expiry date</th>
   <th>Purchase Quantity</th>
   <!--<th>Expiry</th>-->
-  <% if not @purchase_order.is_completed %>
-  <th>Actions</th>
+  <% if @current_user_role == AppConstants::ADMIN %>
+    <% if not @purchase_order.is_completed %>
+      <th>Actions</th>
+    <%end%>
   <% end %>
   </thead>
   <tbody>
@@ -28,26 +33,41 @@
         <td><%= purchase_order_product.name %></td>
         <td><%= purchase_order_product.try(:product).try(:quantity) %></td>
         <td>
+          <% if purchase_order_product.try(:product).try(:expiry_date).present?
+              expiry_date = purchase_order_product.try(:product).try(:expiry_date).strftime('%d/%m/%Y')
+            else
+              expiry_date = nil
+            end
+          %>
+          <a href="#" class="editable" data-name="expiry_date" data-type="date" data-pk="<%= purchase_order_product.id %>" data-url="<%= update_expiry_editable_product_path(purchase_order_product.id) %>" data-title="Enter Expiry date">
+            <%= expiry_date %>
+          </a>
+        </td>
+        <td>
           <%= purchase_order_product.purchase_quantity %>
+
           <!--<%# if not @purchase_order.is_completed %>-->
             <!--<%#= text_field_tag 'quantites[]', purchase_order_product.purchase_quantity, class: 'update_order_quantites', style: 'width:20%;', id: purchase_order_product.id %>-->
           <!--<%# else %>-->
               <!--<%#= text_field_tag 'quantites[]', purchase_order_product.purchase_quantity, class: 'update_order_quantites', style: 'width:20%;', id: purchase_order_product.id, disabled: true %>-->
           <!--<%# end %>-->
         </td>
-          <% if not @purchase_order.is_completed %>
-            <td>
-            <%#= text_field_tag 'ids1[]', order_product.id, class:'delete_purchase_order_product',id: order_product.id %>
-              <%#=  id = order_product.id %>
-              <%#= @purchase_order_product = PurchaseOrderProduct.find_by_id ( id )%>
-              <%# @order_product = @purchase_order_product.name %>
-              <%=  link_to 'Edit', edit_purchase_order_purchase_order_product_path(@purchase_order.id,purchase_order_product.id), class: 'btn btn-success' %>
-              <%=  link_to 'Delete', purchase_order_purchase_order_product_path(@purchase_order, purchase_order_product), method: :delete, class: 'btn btn-danger' %>
-              <%#= link_to 'Edit Order',  edit_purchase_order_purchase_order_product_path(@purchase_order,purchase_order_product), class: 'btn btn-success pull-right', id: 'update_purchase_order_products' %>
-              <%#= link_to '', update_products_purchase_order_product_path , class: 'fa fa-edit' %>
-              <%#= link_to 'Edit', 'javascript:void(0)', id: 'update_purchase_order_product', class: 'btn btn-mini btn-success' %>
-            </td>
-      <% end %>
+          <% if @current_user_role == AppConstants::ADMIN %>
+            <% if not @purchase_order.is_completed %>
+              <td>
+              <%#= text_field_tag 'ids1[]', order_product.id, class:'delete_purchase_order_product',id: order_product.id %>
+                <%#=  id = order_product.id %>
+                <%#= @purchase_order_product = PurchaseOrderProduct.find_by_id ( id )%>
+                <%# @order_product = @purchase_order_product.name %>
+                
+                <%=  link_to 'Edit', edit_purchase_order_purchase_order_product_path(@purchase_order.id,purchase_order_product.id), class: 'btn btn-success' %>
+                <%=  link_to 'Delete', purchase_order_purchase_order_product_path(@purchase_order, purchase_order_product), method: :delete, class: 'btn btn-danger' %> 
+                <%#= link_to 'Edit Order',  edit_purchase_order_purchase_order_product_path(@purchase_order,purchase_order_product), class: 'btn btn-success pull-right', id: 'update_purchase_order_products' %>
+                <%#= link_to '', update_products_purchase_order_product_path , class: 'fa fa-edit' %>
+                <%#= link_to 'Edit', 'javascript:void(0)', id: 'update_purchase_order_product', class: 'btn btn-mini btn-success' %>
+              </td>
+            <% end %>
+        <% end %>
       </tr>
   <% end %>
   </div>

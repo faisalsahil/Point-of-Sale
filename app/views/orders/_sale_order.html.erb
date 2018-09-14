@@ -25,7 +25,7 @@
   }
 </style>
 
-<div id="table-discount" style="display: none;" class="row">
+<div id="table-discount" style="display: none; border: none;" class="row">
   <div class="col-md-8">
     <h5 style="font-weight: bold;">Naseem Pharmacy</h5>
     <br>
@@ -122,6 +122,20 @@
             <td>Net Amount</td>
             <td id="net_amount" style=" text-align: right"> 0 </td>
           </tr>
+
+          <tr>
+            <td>Cash</th>
+            <td style=" text-align: right"> 
+              <input type="text" name="order[cash]" id="cash_recieved" style="width: 50px;">
+            </td>              
+          </tr>
+
+          <tr>
+            <td>Balance</th>
+            <td id="remaining_balance" style=" text-align: right"> 0 </td>  
+          </tr>
+
+
           </tbody>
         </table>
 

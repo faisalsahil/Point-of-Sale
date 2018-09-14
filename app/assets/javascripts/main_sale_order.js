@@ -1,5 +1,16 @@
 $(document).ready(function() {
-
+    $( "#cash_recieved" ).keyup(function() {
+        if ($(this).val() == '' || $(this).val() == 0) {
+            $('#remaining_balance').text('0');
+        }
+        else
+        {
+            var amount = parseFloat($('#net_amount').text());
+            var cash = parseFloat($('#cash_recieved').val());
+            $('#remaining_balance').text(cash - amount);
+        
+        }
+    });
     // (function ($) {
     //     "use strict";
     //
