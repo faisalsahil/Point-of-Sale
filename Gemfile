@@ -82,7 +82,7 @@ gem 'carrierwave'
 gem 'cloudinary'
 
 
-# gem 'pg', '~> 0.20'
+gem 'pg', '~> 0.20'
 
 gem 'gon'
 # for pdf generation
