@@ -17,7 +17,7 @@ gem 'bcrypt'
 
 gem 'devise'
 
-gem 'mysql2', '< 0.5'
+# gem 'mysql2', '< 0.5'
 
 gem 'bootstrap-editable-rails'
 
