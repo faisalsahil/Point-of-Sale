@@ -4,9 +4,20 @@
   #action_btn { display: none; }
   #selector-div { display: none; }
 
-  #added_products td:nth-child(1), #added_products th:nth-child(1) { display: none; }
-  #added_products td:nth-child(3), #added_products th:nth-child(3) { display: none; }
-  #added_products td:nth-child(8), #added_products th:nth-child(7) { display: none; }
+  /*#added_products td:nth-child(1), #added_products th:nth-child(1) { display: none; }*/
+  /*#added_products td:nth-child(3), #added_products th:nth-child(3) { display: none; }*/
+  /*#added_products td:nth-child(4), #added_products th:nth-child(4) { display: none; }*/
+  /*#added_products td:nth-child(8), #added_products th:nth-child(8) { display: none; }*/
+
+  #added_products th:nth-child(1) { display: none; }
+  #added_products th:nth-child(3) { display: none; }
+  #added_products th:nth-child(4) { display: none; }
+  #added_products th:nth-child(8) { display: none; }
+
+  #added_products td:nth-child(1) { display: none; }
+  #added_products td:nth-child(3) { display: none; }
+  #added_products td:nth-child(4) { display: none; }
+  #added_products td:nth-child(9) { display: none; }
 
   .order-item-quantity-input{ border: none; text-align: center;}
   #discount_percentage{ border: none; text-align: left;}
@@ -56,7 +67,7 @@
 
           <div id="selector-div" class="col-md-6" style="margin-bottom:10px;">
             <% if @products.present? %>
-                Search Products:<%=  select_tag "products", options_for_select(@products.try(:collect) { |u| [u.product_name , "#{u.id}:#{u.product_name}:#{u.sale_price.to_s}: #{u.quantity}:#{u.purchase_price}"]}), {:id =>"chosen-select",:style=>'width:250px;',class: 'choose',  multiple: 'multiple'} %>
+                Search Products:<%=  select_tag "products", options_for_select(@products.try(:collect) { |u| [u.product_name , "#{u.id}:#{u.product_name}:#{u.sale_price.to_s}: #{u.quantity}:#{u.purchase_price}:#{u.rack_number}"]}), {:id =>"chosen-select",:style=>'width:250px;',class: 'choose',  multiple: 'multiple'} %>
                 <%= f.hidden_field :order_id, :value => @order_number %>
             <% end %>
           </div>

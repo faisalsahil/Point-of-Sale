@@ -8,7 +8,7 @@ $(document).ready(function() {
             var amount = parseFloat($('#net_amount').text());
             var cash = parseFloat($('#cash_recieved').val());
             $('#remaining_balance').text(cash - amount);
-        
+
         }
     });
     // (function ($) {
@@ -61,6 +61,7 @@ $(document).ready(function() {
         var s_price= arr[2];
         var stock  = arr[3];
         var p_price  = arr[4];
+        var rack_number  = arr[5] || 'N/A';
         var tot    = s_price * 1;
         // Append to order sheet
 
@@ -82,6 +83,7 @@ $(document).ready(function() {
                 "<input name='order[order_products_attributes][][purchase_price]' type='hidden' value='" + p_price + "'></td>" +
                 "<td>" + text + "</td>" +
                 "<td class='order-item-stock'>" + stock + "</td>" +
+                "<td class='order-item-rack-number'>" + rack_number + "</td>" +
                 "<input name='order[order_products_attributes][][unit_cost]' type='hidden' value='" + s_price + "'>" +
                 "<td class='order-item-sale-price'>" + s_price + "</td>" +
                 "<td style='width:20%'><input class='order-item-quantity-input' name='order[order_products_attributes][][quantity]' id='quantity' type='text' value='1' style='width:85%' ></td>" +
