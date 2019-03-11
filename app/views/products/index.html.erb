@@ -19,6 +19,7 @@
       <th>Sale price</th>
       <th>Quantity</th>
       <th>Expiry date</th>
+      <th>Rack#</th>
       <th>Actions</th>
       <th>Comapny</th>
     </tr>
@@ -27,7 +28,14 @@
   <tbody>
     <% @products.each do |product| %>
       <tr>
-        <td><%= "#{product.product_name}" %></td>
+<!--        <td><%#= "#{product.product_name}" %></td>-->
+
+        <td>
+          <a href="#" class="editable" data-name="product_name" data-type="text" data-pk="<%= product.id %>" data-url="<%= update_product_name_editable_product_path(product.id) %>" data-title="Enter product name">
+            <%= product.try(:product_name) %>
+          </a>
+        </td>
+
 
         <td>
           <a href="#" class="editable" data-name="purchase_price" data-type="text" data-pk="<%= product.id %>" data-url="<%= update_purchase_price_editable_product_path(product.id) %>" data-title="Enter Purchase Price">
@@ -40,6 +48,7 @@
             <%= product.try(:sale_price) %>
           </a>
         </td>
+
         <td>
           <a href="#" class="editable" data-name="quantity" data-type="text" data-pk="<%= product.id %>" data-url="<%= update_quantity_editable_product_path(product.id) %>" data-title="Enter Quantity">
             <%= product.try(:quantity) %>
@@ -59,6 +68,12 @@
         </td>
 
         <td>
+          <a href="#" class="editable" data-name="rack_number" data-type="text" data-pk="<%= product.id %>" data-url="<%= update_rack_number_editable_product_path(product.id) %>" data-title="Enter Rack Number">
+            <%= product.try(:rack_number) %>
+          </a>
+        </td>
+
+        <td>
           <%= link_to '', product, class: 'fa fa-eye' %>
           <% if @current_user_role == AppConstants::ADMIN %>
               <%= link_to '', edit_product_path(product), class: 'fa fa-edit' %>
@@ -72,3 +87,6 @@
     <% end %>
   </tbody>
 </table>
+
+
+<%=paginate @products %>

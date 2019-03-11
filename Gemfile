@@ -84,6 +84,8 @@ gem 'cloudinary'
 
 gem 'pg', '~> 0.20'
 
+gem 'kaminari'
+
 gem 'gon'
 # for pdf generation
 gem 'wkhtmltopdf-binary'

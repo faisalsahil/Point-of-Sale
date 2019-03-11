@@ -55,6 +55,8 @@ PosRetail::Application.routes.draw do
       put :update_sale_price_editable
       put :update_purchase_price_editable
       put :update_expiry_editable
+      put :update_rack_number_editable
+      put :update_product_name_editable
     end
   end
   resources :orders do
