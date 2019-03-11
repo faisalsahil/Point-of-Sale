@@ -11,8 +11,7 @@ class ProductsController < ApplicationController
   respond_to :html, :js
 
   def index
-    page             = params[:page] || 1
-    @products        = Product.select(:id, :product_name, :quantity, :purchase_price, :sale_price, :expiry_date, :rack_number).page(page)
+    @products        = Product.select(:id, :product_name, :quantity, :purchase_price, :sale_price, :expiry_date, :rack_number)
     @purchase_orders = PurchaseOrder.all
   end
 
