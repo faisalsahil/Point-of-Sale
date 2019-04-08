@@ -7,6 +7,7 @@ PosRetail::Application.routes.draw do
  # post "reports/sale_report/generate_report", :as =>'download'
 
 
+  resources :data_resets, only: [:new, :create]
   resources :sale_report do
   collection do
     get :download
