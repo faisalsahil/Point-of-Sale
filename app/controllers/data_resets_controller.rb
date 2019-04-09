@@ -7,7 +7,7 @@ class DataResetsController < ApplicationController
 
     d      = params[:to_date].to_date
     orders = Order.where('extract(year from created_at) = ? AND  extract(month from created_at) <= ? AND extract(day from created_at) <= ?', d.year, d.month, d.day)
-    binding.pry
+    
     orders&.each do |order|
       order.order_products.destroy_all
       order.destroy
